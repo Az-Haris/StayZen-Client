@@ -10,7 +10,7 @@ const Root = () => {
       <Navbar></Navbar>
 
       </header>
-      <div className="py-[34px]"></div>
+      <div className="py-[33px]"></div>
       <main>
         <Outlet></Outlet>
       </main>

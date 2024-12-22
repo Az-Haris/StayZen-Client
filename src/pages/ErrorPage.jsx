@@ -1,17 +1,16 @@
 import { Link, useNavigate } from "react-router-dom";
 import { IoArrowBackCircleSharp } from "react-icons/io5";
 import { MdHome } from "react-icons/md";
-import { Typewriter } from "react-simple-typewriter";
+import Lottie from "lottie-react";
+import animation404 from '../assets/404.json'
 
 const ErrorPage = () => {
   const navigate = useNavigate();
   return (
     <div className="flex flex-col items-center min-h-screen justify-center">
-      <h1 className="text-9xl font-extrabold text-primary mb-10">
-        <Typewriter words={["Oops!"]} typeSpeed={600} />
-      </h1>
+      <Lottie className="w-52" animationData={animation404} />
 
-      <h3 className="text-2xl font-bold mb-2">404-PAGE NOT FOUND</h3>
+      <h3 className="text-5xl font-bold mb-2">Opps!...</h3>
       <p className="text-center text-lg font-semibold mb-5">
         The page or content you&apos;re looking for was
         <br />
