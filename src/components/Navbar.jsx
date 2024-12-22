@@ -5,6 +5,7 @@ import { FiUserPlus } from "react-icons/fi";
 import { MdHome } from "react-icons/md";
 import { BsInfoCircleFill } from "react-icons/bs";
 import { BiSupport } from "react-icons/bi";
+import { BiSolidBuildingHouse } from "react-icons/bi";
 import Logo from "./Logo";
 
 const Navbar = () => {
@@ -12,6 +13,9 @@ const Navbar = () => {
     <>
       <li>
         <NavLink to={"/"}><MdHome />Home</NavLink>
+      </li>
+      <li>
+        <NavLink to={"/rooms"}><BiSolidBuildingHouse />Rooms</NavLink>
       </li>
       <li>
         <NavLink to={"/about"}><BsInfoCircleFill />About</NavLink>

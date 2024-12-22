@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { MdHome } from "react-icons/md";
 import { BsInfoCircleFill } from "react-icons/bs";
 import { BiSupport } from "react-icons/bi";
+import { BiSolidBuildingHouse } from "react-icons/bi";
 
 const Footer = () => {
   return (
@@ -85,6 +86,12 @@ const Footer = () => {
             className="transform hover:translate-x-1 transition duration-300 hover:text-primary flex items-center gap-2"
           >
             <MdHome />Home
+          </Link>
+          <Link
+            to={"/rooms"}
+            className="transform hover:translate-x-1 transition duration-300 hover:text-primary flex items-center gap-2"
+          >
+            <BiSolidBuildingHouse />Rooms
           </Link>
           <Link
             to={"/about"}
