@@ -70,6 +70,7 @@ const Register = () => {
                     <input
                       type="email"
                       name="email"
+                      autoComplete="email"
                       className="grow"
                       placeholder="Email"
                     />
@@ -84,6 +85,7 @@ const Register = () => {
                     <input
                       type={showPass ? "text" : "password"}
                       name="password"
+                      autoComplete="current-password"
                       className="grow"
                       placeholder="Password"
                     />

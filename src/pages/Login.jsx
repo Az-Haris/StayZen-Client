@@ -46,6 +46,7 @@ const Login = () => {
                   <input
                     type="email"
                     name="email"
+                    autoComplete="email"
                     className="grow"
                     placeholder="Email"
                   />
@@ -71,6 +72,7 @@ const Login = () => {
                   <input
                     type={showPass ? "text" : "password"}
                     name="password"
+                    autoComplete="current-password"
                     className="grow"
                     placeholder="Password"
                   />

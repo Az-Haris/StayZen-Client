@@ -6,9 +6,14 @@ import { ToastContainer, Slide } from "react-toastify";
 const Root = () => {
   return (
     <div>
+      <header>
       <Navbar></Navbar>
+
+      </header>
       <div className="py-[34px]"></div>
-      <Outlet></Outlet>
+      <main>
+        <Outlet></Outlet>
+      </main>
       <Footer></Footer>
       <ToastContainer
         position="bottom-right"

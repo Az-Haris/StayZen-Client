@@ -10,9 +10,9 @@ import { BiSupport } from "react-icons/bi";
 
 const Footer = () => {
   return (
-    <div className="bg-base-200 text-base-content">
+    <footer className="bg-base-200 text-base-content">
       <div className="divider pt-10 my-0">Reach Out</div>
-      <footer className="footer  lg:justify-between container mx-auto py-10 px-3">
+      <div className="footer  lg:justify-between container mx-auto py-10 px-3">
         <aside className="w-full">
           <Logo></Logo>
           <p>
@@ -116,7 +116,7 @@ const Footer = () => {
             </div>
           </fieldset>
         </form>
-      </footer>
+      </div>
       <div className="divider pb-8 my-0">Copyright</div>
       <aside className="container mx-auto text-center px-3 pb-8">
         <p>
@@ -130,7 +130,7 @@ const Footer = () => {
           </a>
         </p>
       </aside>
-    </div>
+    </footer>
   );
 };
 
