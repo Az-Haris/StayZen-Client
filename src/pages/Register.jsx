@@ -1,21 +1,78 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import RegisterImage from "../assets/register.json";
 import Lottie from "lottie-react";
 import { IoMdEyeOff } from "react-icons/io";
 import { IoMdEye } from "react-icons/io";
-import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import { MdEmail } from "react-icons/md";
 import { IoMdPerson } from "react-icons/io";
 import { FaLink } from "react-icons/fa";
 import { FaKey } from "react-icons/fa";
+import { AuthContext } from "../contexts/contexts";
 
 const Register = () => {
   const [showPass, setShowPass] = useState(false);
+  const { registerNewUser, setLoading, updateUser, setUser } =
+    useContext(AuthContext);
+  const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/;
+  const [error, setError] = useState({});
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleRegister = (e) => {
     e.preventDefault();
-    toast.success("Registered!");
+
+    const form = new FormData(e.target);
+    const email = form.get("email");
+    const name = form.get("name");
+    if (name.length < 4) {
+      setError((prevError) => ({
+        ...prevError,
+        name: "Name must be at least 4 character long.",
+      }));
+      return;
+    } else {
+      setError((prevError) => {
+        ({ ...prevError, name: "" });
+      });
+    }
+    const photo = form.get("photo");
+    const password = form.get("password");
+    if (!regex.test(password)) {
+      setError((prevError) => ({
+        ...prevError,
+        pass: "Password must contain at least 1 uppercase, 1 lowercase, 1 number, and be 6 characters long.",
+      }));
+      return;
+    } else {
+      setError((prevError) => ({
+        ...prevError,
+        pass: "",
+      }));
+    }
+
+    // Register User
+    registerNewUser(email, password).then((result) => {
+      const user = result.user;
+      setLoading(true);
+      updateUser({ displayName: name, photoURL: photo })
+        .then(() => {
+          const updatedUser = {
+            ...user,
+            displayName: name,
+            photoURL: photo,
+          };
+          setUser(updatedUser);
+          setLoading(false);
+          navigate(location?.state ? location.state : "/");
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          Swal.fire("Error!", `${errorCode} ${errorMessage}`, "error");
+        });
+    });
   };
   return (
     <div className="hero bg-base-200 py-0 lg:py-10">
@@ -43,6 +100,13 @@ const Register = () => {
                       placeholder="Name"
                     />
                   </label>
+                  {error?.name && (
+                    <label className="label">
+                      <p className="label-text-alt text-red-500">
+                        {error.name}
+                      </p>
+                    </label>
+                  )}
                 </div>
                 <div className="form-control">
                   <label className="label">

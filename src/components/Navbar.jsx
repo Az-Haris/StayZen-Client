@@ -8,8 +8,11 @@ import { BiSupport } from "react-icons/bi";
 import { BiSolidBuildingHouse } from "react-icons/bi";
 import { TbContract } from "react-icons/tb";
 import Logo from "./Logo";
+import { useContext } from "react";
+import { AuthContext } from "../contexts/contexts";
 
 const Navbar = () => {
+  const {user, logOut} = useContext(AuthContext)
   const links = (
     <>
       <li>
@@ -18,9 +21,11 @@ const Navbar = () => {
       <li>
         <NavLink to={"/rooms"}><BiSolidBuildingHouse />Rooms</NavLink>
       </li>
-      <li>
+      {
+        user && <li>
         <NavLink to={"/bookings"}><TbContract />My Bookings</NavLink>
       </li>
+      }
       <li>
         <NavLink to={"/about"}><BsInfoCircleFill />About</NavLink>
       </li>
@@ -99,7 +104,7 @@ const Navbar = () => {
                 <a>Settings</a>
               </li>
               <li>
-                <a>Logout</a>
+                <a onClick={logOut}>Logout</a>
               </li>
             </ul>
           </div>

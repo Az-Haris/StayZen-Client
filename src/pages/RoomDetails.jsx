@@ -14,7 +14,7 @@ const RoomDetails = () => {
   } = useQuery({
     queryKey: ["rooms"],
     queryFn: async () => {
-      const res = await axios.get(`http://localhost:5000/rooms/${id}`);
+      const res = await axios.get(`https://stay-zen.vercel.app/rooms/${id}`);
       return res.data;
     },
   });
