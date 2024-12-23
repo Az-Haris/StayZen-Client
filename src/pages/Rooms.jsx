@@ -17,46 +17,6 @@ const Rooms = () => {
     },
   });
 
-  //   amenities
-  // :
-  // (3) ['Free WiFi', 'Ensuite Bathroom', 'Flat-Screen TV']
-  // availability
-  // :
-  // true
-  // bedType
-  // :
-  // "Single"
-  // capacity
-  // :
-  // 1
-  // description
-  // :
-  // "Budget-friendly room with essential amenities, perfect for short stays."
-  // id
-  // :
-  // 15
-  // image
-  // :
-  // "https://i.ibb.co.com/NmDrHMM/Economy-Room.jpg"
-  // name
-  // :
-  // "Economy Room"
-  // pricePerNight
-  // :
-  // 60
-  // rating
-  // :
-  // 0
-  // ratingCount
-  // :
-  // 0
-  // size
-  // :
-  // "18 sqm"
-  // _id
-  // :
-  // "67690ffb5f313827e514ad04"
-
   if (isLoading) {
     return (
       <div className="mt-10 mb-24">
@@ -80,8 +40,6 @@ const Rooms = () => {
     );
   }
 
-  console.log(rooms);
-
   return (
     <div className="mt-10">
       <SectionTitle
@@ -91,7 +49,7 @@ const Rooms = () => {
         }
       ></SectionTitle>
       <div className="mt-10 mb-20 container mx-auto px-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 justify-center">
-        {rooms.map((room) => (
+        {Array.isArray(rooms) && rooms.map((room) => (
           <div
             key={room.id}
             className="card card-compact bg-base-100 shadow-xl transform hover:-translate-y-2 transition duration-500 border border-base-300"
@@ -125,7 +83,7 @@ const Rooms = () => {
                 </p>
               </div>
               <div className="card-actions justify-end">
-                <Link to={`/`} className="btn btn-primary">
+                <Link to={`/rooms/${room._id}`} className="btn btn-primary">
                   Book Now
                 </Link>
               </div>
