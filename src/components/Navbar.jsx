@@ -6,6 +6,7 @@ import { MdHome } from "react-icons/md";
 import { BsInfoCircleFill } from "react-icons/bs";
 import { BiSupport } from "react-icons/bi";
 import { BiSolidBuildingHouse } from "react-icons/bi";
+import { TbContract } from "react-icons/tb";
 import Logo from "./Logo";
 
 const Navbar = () => {
@@ -16,6 +17,9 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink to={"/rooms"}><BiSolidBuildingHouse />Rooms</NavLink>
+      </li>
+      <li>
+        <NavLink to={"/bookings"}><TbContract />My Bookings</NavLink>
       </li>
       <li>
         <NavLink to={"/about"}><BsInfoCircleFill />About</NavLink>

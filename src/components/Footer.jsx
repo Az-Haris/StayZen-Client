@@ -58,25 +58,25 @@ const Footer = () => {
             to={"/"}
             className="transform hover:translate-x-1 transition duration-300 hover:text-primary"
           >
-            Branding
+            Privacy
           </Link>
           <Link
             to={"/"}
             className="transform hover:translate-x-1 transition duration-300 hover:text-primary"
           >
-            Branding
+            Help
           </Link>
           <Link
             to={"/"}
             className="transform hover:translate-x-1 transition duration-300 hover:text-primary"
           >
-            Branding
+            Terms
           </Link>
           <Link
             to={"/"}
             className="transform hover:translate-x-1 transition duration-300 hover:text-primary"
           >
-            Branding
+            FAQ
           </Link>
         </nav>
         <nav className="w-full">

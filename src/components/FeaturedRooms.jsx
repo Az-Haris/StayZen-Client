@@ -10,7 +10,7 @@ const FeaturedRooms = () => {
           "Discover our handpicked selection of featured rooms, offering premium comfort, modern amenities, and the perfect ambiance for your stay."
         }
       ></SectionTitle>
-      <div className="mt-10 mb-20 container mx-auto px-3 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 justify-center">
+      <div className="mt-10 container mx-auto px-3 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-5 justify-center">
         <div className="card card-compact bg-base-100 shadow-xl transform hover:-translate-y-2 transition duration-500 border border-base-300">
           <figure className="h-44">
             <img className="object-cover h-full w-full transform hover:scale-105 transition duration-500" src="https://i.ibb.co.com/DbJhKb6/Hotel-1.webp" alt="{countryName}" />
