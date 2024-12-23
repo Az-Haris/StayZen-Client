@@ -1,0 +1,373 @@
+[
+  {
+    "id": 1,
+    "name": "Deluxe King Room",
+    "description": "Spacious room with a king-sized bed, luxurious linens, and a city view. Perfect for a comfortable and relaxing stay.",
+    "pricePerNight": 150,
+    "capacity": 2,
+    "size": "35 sqm",
+    "bedType": "King",
+    "amenities": [
+      "Free WiFi",
+      "Air Conditioning",
+      "Flat-Screen TV",
+      "Minibar",
+      "Ensuite Bathroom"
+    ],
+    "rating": 0,
+    "ratingCount": 0,
+    "image": "https://i.ibb.co.com/fpD5gNs/Deluxe-King-Room.jpg",
+    "availability": true
+  },
+  {
+    "id": 2,
+    "name": "Executive Suite",
+    "description": "Luxury suite with separate living and sleeping areas, designed for business or leisure travelers seeking extra space and comfort.",
+    "pricePerNight": 300,
+    "capacity": 4,
+    "size": "60 sqm",
+    "bedType": "King",
+    "amenities": [
+      "Free WiFi",
+      "Air Conditioning",
+      "Flat-Screen TV",
+      "Coffee Maker",
+      "Jacuzzi",
+      "Work Desk"
+    ],
+    "rating": 0,
+    "ratingCount": 0,
+    "image": "https://i.ibb.co.com/grJwF0R/Executive-Suite.jpg",
+    "availability": true
+  },
+  {
+    "id": 3,
+    "name": "Standard Queen Room",
+    "description": "Cozy and affordable, the Standard Queen Room is ideal for solo travelers or couples seeking simplicity and comfort.",
+    "pricePerNight": 100,
+    "capacity": 2,
+    "size": "25 sqm",
+    "bedType": "Queen",
+    "amenities": [
+      "Free WiFi",
+      "Flat-Screen TV",
+      "Hairdryer",
+      "Ensuite Bathroom"
+    ],
+    "rating": 0,
+    "ratingCount": 0,
+    "image": "https://i.ibb.co.com/WnW8V3n/Standard-Queen-Room.jpg",
+    "availability": true
+  },
+  {
+    "id": 4,
+    "name": "Family Room",
+    "description": "Spacious family room with two queen-sized beds and a sofa bed, ensuring comfort for the entire family.",
+    "pricePerNight": 200,
+    "capacity": 5,
+    "size": "45 sqm",
+    "bedType": "Two Queens and Sofa Bed",
+    "amenities": [
+      "Free WiFi",
+      "Air Conditioning",
+      "Flat-Screen TV",
+      "Kitchenette",
+      "Children's Play Area"
+    ],
+    "rating": 0,
+    "ratingCount": 0,
+    "image": "https://i.ibb.co.com/0rM8prx/Family-Room.jpg",
+    "availability": true
+  },
+  {
+    "id": 5,
+    "name": "Penthouse Suite",
+    "description": "Exclusive penthouse with a private terrace, panoramic views, and premium amenities for the ultimate luxury experience.",
+    "pricePerNight": 1000,
+    "capacity": 4,
+    "size": "150 sqm",
+    "bedType": "King",
+    "amenities": [
+      "Private Terrace",
+      "Hot Tub",
+      "Mini Bar",
+      "Personal Butler",
+      "Free WiFi",
+      "Kitchen"
+    ],
+    "rating": 0,
+    "ratingCount": 0,
+    "image": "https://i.ibb.co.com/Yk6TxYH/Penthouse-Suite.jpg",
+    "availability": true
+  },
+  {
+    "id": 6,
+    "name": "Single Room",
+    "description": "Compact and economical, the Single Room is ideal for solo travelers seeking a budget-friendly stay.",
+    "pricePerNight": 75,
+    "capacity": 1,
+    "size": "20 sqm",
+    "bedType": "Single",
+    "amenities": ["Free WiFi", "Flat-Screen TV", "Ensuite Bathroom"],
+    "rating": 0,
+    "ratingCount": 0,
+    "image": "https://i.ibb.co.com/GCdTL4V/Single-Room.jpg",
+    "availability": true
+  },
+  {
+    "id": 7,
+    "name": "Twin Room",
+    "description": "Perfect for friends or colleagues, the Twin Room offers two single beds and modern amenities for a comfortable stay.",
+    "pricePerNight": 120,
+    "capacity": 2,
+    "size": "30 sqm",
+    "bedType": "Two Singles",
+    "amenities": [
+      "Free WiFi",
+      "Flat-Screen TV",
+      "Ensuite Bathroom",
+      "Wardrobe"
+    ],
+    "rating": 0,
+    "ratingCount": 0,
+    "image": "https://i.ibb.co.com/WsnLnQY/Twin-Room.jpg",
+    "availability": true
+  },
+  {
+    "id": 8,
+    "name": "Honeymoon Suite",
+    "description": "Romantic suite with a four-poster bed, rose petal arrangements, and a private balcony overlooking the city skyline.",
+    "pricePerNight": 500,
+    "capacity": 2,
+    "size": "50 sqm",
+    "bedType": "King",
+    "amenities": [
+      "Private Balcony",
+      "Jacuzzi",
+      "Free WiFi",
+      "Breakfast in Room"
+    ],
+    "rating": 0,
+    "ratingCount": 0,
+    "image": "https://i.ibb.co.com/pJB37GK/Honeymoon-Suite.jpg",
+    "availability": true
+  },
+  {
+    "id": 9,
+    "name": "Accessible Room",
+    "description": "Designed for accessibility, this room includes features such as wider doors, grab bars, and step-free access.",
+    "pricePerNight": 140,
+    "capacity": 2,
+    "size": "30 sqm",
+    "bedType": "Queen",
+    "amenities": [
+      "Accessible Bathroom",
+      "Step-Free Access",
+      "Free WiFi",
+      "Flat-Screen TV"
+    ],
+    "rating": 0,
+    "ratingCount": 0,
+    "image": "https://i.ibb.co.com/3pk6WDR/Accessible-Room.jpg",
+    "availability": true
+  },
+  {
+    "id": 10,
+    "name": "Presidential Suite",
+    "description": "Top-tier suite featuring elegant design, a private meeting room, and exclusive services for the most discerning guests.",
+    "pricePerNight": 2000,
+    "capacity": 6,
+    "size": "200 sqm",
+    "bedType": "Two Kings",
+    "amenities": [
+      "Private Meeting Room",
+      "Personal Chef",
+      "Luxury Decor",
+      "Hot Tub",
+      "Free WiFi",
+      "Butler Service"
+    ],
+    "rating": 0,
+    "ratingCount": 0,
+    "image": "https://i.ibb.co.com/JyH8tCz/Presidential-Suite.jpg",
+    "availability": true
+  },
+  {
+    "id": 11,
+    "name": "Classic Double Room",
+    "description": "Elegant room with double bed, a relaxing ambiance, and essential amenities for a cozy stay.",
+    "pricePerNight": 130,
+    "capacity": 2,
+    "size": "28 sqm",
+    "bedType": "Double",
+    "amenities": [
+      "Free WiFi",
+      "Air Conditioning",
+      "Flat-Screen TV",
+      "Tea/Coffee Maker"
+    ],
+    "rating": 0,
+    "ratingCount": 0,
+    "image": "https://i.ibb.co.com/GtJ8MJf/Classic-Double-Room.jpg",
+    "availability": true
+  },
+  {
+    "id": 12,
+    "name": "Junior Suite",
+    "description": "Spacious junior suite featuring a lounge area, ideal for longer stays and guests seeking additional comfort.",
+    "pricePerNight": 250,
+    "capacity": 3,
+    "size": "45 sqm",
+    "bedType": "King",
+    "amenities": [
+      "Lounge Area",
+      "Free WiFi",
+      "Flat-Screen TV",
+      "Air Conditioning",
+      "Minibar"
+    ],
+    "rating": 0,
+    "ratingCount": 0,
+    "image": "https://i.ibb.co.com/2WfSLXz/Junior-Suite.jpg",
+    "availability": true
+  },
+  {
+    "id": 13,
+    "name": "Studio Apartment",
+    "description": "Self-contained studio with a kitchenette and a king-sized bed, perfect for extended stays.",
+    "pricePerNight": 180,
+    "capacity": 2,
+    "size": "40 sqm",
+    "bedType": "King",
+    "amenities": ["Kitchenette", "Free WiFi", "Flat-Screen TV", "Work Desk"],
+    "rating": 0,
+    "ratingCount": 0,
+    "image": "https://i.ibb.co.com/YL3HByy/Studio-Apartment.jpg",
+    "availability": true
+  },
+  {
+    "id": 14,
+    "name": "Superior Queen Room",
+    "description": "Enhanced queen room with upgraded amenities and a stunning garden view.",
+    "pricePerNight": 170,
+    "capacity": 2,
+    "size": "32 sqm",
+    "bedType": "Queen",
+    "amenities": [
+      "Garden View",
+      "Free WiFi",
+      "Air Conditioning",
+      "Tea/Coffee Maker"
+    ],
+    "rating": 0,
+    "ratingCount": 0,
+    "image": "https://i.ibb.co.com/P12zHgd/Superior-Queen-Room.jpg",
+    "availability": true
+  },
+  {
+    "id": 15,
+    "name": "Economy Room",
+    "description": "Budget-friendly room with essential amenities, perfect for short stays.",
+    "pricePerNight": 60,
+    "capacity": 1,
+    "size": "18 sqm",
+    "bedType": "Single",
+    "amenities": ["Free WiFi", "Ensuite Bathroom", "Flat-Screen TV"],
+    "rating": 0,
+    "ratingCount": 0,
+    "image": "https://i.ibb.co.com/NmDrHMM/Economy-Room.jpg",
+    "availability": true
+  },
+  {
+    "id": 16,
+    "name": "Royal Suite",
+    "description": "Opulent suite with regal decor, a dining area, and exceptional services for a majestic stay.",
+    "pricePerNight": 1500,
+    "capacity": 5,
+    "size": "180 sqm",
+    "bedType": "King and Twin",
+    "amenities": [
+      "Dining Area",
+      "Private Balcony",
+      "Hot Tub",
+      "Personal Butler",
+      "Free WiFi"
+    ],
+    "rating": 0,
+    "ratingCount": 0,
+    "image": "https://i.ibb.co.com/R9Cdgkf/Royal-Suite.jpg",
+    "availability": true
+  },
+  {
+    "id": 17,
+    "name": "Ocean View Room",
+    "description": "Serene room offering breathtaking ocean views and modern comforts.",
+    "pricePerNight": 200,
+    "capacity": 2,
+    "size": "35 sqm",
+    "bedType": "Queen",
+    "amenities": ["Ocean View", "Balcony", "Free WiFi", "Air Conditioning"],
+    "rating": 0,
+    "ratingCount": 0,
+    "image": "https://i.ibb.co.com/KFctrrJ/Ocean-View-Room.jpg",
+    "availability": true
+  },
+  {
+    "id": 18,
+    "name": "Bungalow Suite",
+    "description": "Private bungalow with exclusive access to garden and pool areas, offering a secluded and peaceful retreat.",
+    "pricePerNight": 400,
+    "capacity": 4,
+    "size": "70 sqm",
+    "bedType": "King and Sofa Bed",
+    "amenities": [
+      "Private Garden",
+      "Access to Pool",
+      "Free WiFi",
+      "Flat-Screen TV",
+      "Kitchenette"
+    ],
+    "rating": 0,
+    "ratingCount": 0,
+    "image": "https://i.ibb.co.com/QMRrhhs/Bungalow-Suite.jpg",
+    "availability": true
+  },
+  {
+    "id": 19,
+    "name": "Heritage Room",
+    "description": "Room with traditional decor and a touch of history, paired with modern amenities for a unique stay.",
+    "pricePerNight": 160,
+    "capacity": 2,
+    "size": "30 sqm",
+    "bedType": "Queen",
+    "amenities": [
+      "Free WiFi",
+      "Flat-Screen TV",
+      "Air Conditioning",
+      "Heritage Decor"
+    ],
+    "rating": 0,
+    "ratingCount": 0,
+    "image": "https://i.ibb.co.com/pvgTt66/Heritage-Room.jpg",
+    "availability": true
+  },
+  {
+    "id": 20,
+    "name": "Spa Suite",
+    "description": "Indulgent suite featuring an in-room spa, designed for relaxation and rejuvenation.",
+    "pricePerNight": 700,
+    "capacity": 2,
+    "size": "55 sqm",
+    "bedType": "King",
+    "amenities": [
+      "In-Room Spa",
+      "Private Balcony",
+      "Free WiFi",
+      "Flat-Screen TV"
+    ],
+    "rating": 0,
+    "ratingCount": 0,
+    "image": "https://i.ibb.co.com/fC9SF8b/Spa-Suite.webp",
+    "availability": true
+  }
+]
