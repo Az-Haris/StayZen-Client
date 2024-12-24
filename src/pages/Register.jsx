@@ -65,6 +65,7 @@ const Register = () => {
           };
           setUser(updatedUser);
           setLoading(false);
+          Swal.fire("Success!", "Successfully Registered!", "success");
           navigate(location?.state ? location.state : "/");
         })
         .catch((error) => {
@@ -178,6 +179,7 @@ const Register = () => {
                         const user = result.user;
                         setUser(user);
                         setLoading(false);
+                        Swal.fire("Success!", "Successfully Logged In!", "success");
                         navigate(location?.state ? location.state : "/");
                       })
                       .catch((error) => {

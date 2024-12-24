@@ -26,6 +26,7 @@ const Login = () => {
         const user = result.user;
         setUser(user);
         setLoading(false);
+        Swal.fire("Success!", "Successfully Logged In!", "success");
         navigate(location?.state ? location.state : "/");
       })
       .catch((error) => {
@@ -124,6 +125,7 @@ const Login = () => {
                         const user = result.user;
                         setUser(user);
                         setLoading(false);
+                        Swal.fire("Success!", "Successfully Logged In!", "success");
                         navigate(location?.state ? location.state : "/");
                       })
                       .catch((error) => {
