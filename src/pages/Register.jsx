@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import RegisterImage from "../assets/register.json";
 import Lottie from "lottie-react";
 import { IoMdEyeOff } from "react-icons/io";
@@ -86,6 +86,25 @@ const Register = () => {
         });
     });
   };
+
+  useEffect(()=>{
+    if(error.name){
+      Swal.fire("Name Error!", error.name, "error");
+      setError((prevError) => ({
+        ...prevError,
+        name: "",
+      }))
+    }
+  },[error.name]);
+  useEffect(()=>{
+    if (error.pass) {
+      Swal.fire("Password Error!", error.pass, "error");
+      setError((prevError) => ({
+        ...prevError,
+        pass: "",
+      }))
+    }
+  },[error.pass])
   return (
     <div className="hero bg-base-200 py-0 lg:py-10">
       <div className="flex flex-col lg:flex-row-reverse items-center gap-0 lg:gap-10">
@@ -112,13 +131,6 @@ const Register = () => {
                       placeholder="Name"
                     />
                   </label>
-                  {error?.name && (
-                    <label className="label">
-                      <p className="label-text-alt text-red-500">
-                        {error.name}
-                      </p>
-                    </label>
-                  )}
                 </div>
                 <div className="form-control">
                   <label className="label">
