@@ -9,10 +9,10 @@ import Swal from "sweetalert2";
 
 const Login = () => {
   const [showPass, setShowPass] = useState(false);
-  const {loginUser, setUser, setLoading} = useContext(AuthContext);
+  const { loginUser, setUser, setLoading, loginWithGoogle } =
+    useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
-
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -22,17 +22,17 @@ const Login = () => {
 
     // Login User
     loginUser(email, password)
-    .then(result=>{
-      const user = result.user;
-      setUser(user);
-      setLoading(false);
-      navigate(location?.state ? location.state : "/")
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      Swal.fire("Error!", `${errorCode} ${errorMessage}`, "error");
-    });
+      .then((result) => {
+        const user = result.user;
+        setUser(user);
+        setLoading(false);
+        navigate(location?.state ? location.state : "/");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        Swal.fire("Error!", `${errorCode} ${errorMessage}`, "error");
+      });
   };
   return (
     <div className="hero bg-base-200 py-0 lg:py-10">
@@ -116,7 +116,28 @@ const Login = () => {
                   Login
                 </button>
                 <div className="divider">OR</div>
-                <a className="btn hover:text-white btn-outline btn-primary w-full">
+                <a
+                  onClick={() => {
+                    // Login with google
+                    loginWithGoogle()
+                      .then((result) => {
+                        const user = result.user;
+                        setUser(user);
+                        setLoading(false);
+                        navigate(location?.state ? location.state : "/");
+                      })
+                      .catch((error) => {
+                        const errorCode = error.code;
+                        const errorMessage = error.message;
+                        Swal.fire(
+                          "Error!",
+                          `${errorCode} ${errorMessage}`,
+                          "error"
+                        );
+                      });
+                  }}
+                  className="btn hover:text-white btn-outline btn-primary w-full"
+                >
                   {" "}
                   Login with{" "}
                   <span className="text-lg">

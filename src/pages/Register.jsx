@@ -13,7 +13,7 @@ import { AuthContext } from "../contexts/contexts";
 
 const Register = () => {
   const [showPass, setShowPass] = useState(false);
-  const { registerNewUser, setLoading, updateUser, setUser } =
+  const { registerNewUser, setLoading, updateUser, setUser, loginWithGoogle } =
     useContext(AuthContext);
   const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/;
   const [error, setError] = useState({});
@@ -170,7 +170,28 @@ const Register = () => {
                   Register
                 </button>
                 <div className="divider">OR</div>
-                <a className="btn hover:text-white btn-outline btn-primary w-full">
+                <a
+                  onClick={() => {
+                    // Login with google
+                    loginWithGoogle()
+                      .then((result) => {
+                        const user = result.user;
+                        setUser(user);
+                        setLoading(false);
+                        navigate(location?.state ? location.state : "/");
+                      })
+                      .catch((error) => {
+                        const errorCode = error.code;
+                        const errorMessage = error.message;
+                        Swal.fire(
+                          "Error!",
+                          `${errorCode} ${errorMessage}`,
+                          "error"
+                        );
+                      });
+                  }}
+                  className="btn hover:text-white btn-outline btn-primary w-full"
+                >
                   {" "}
                   Register with{" "}
                   <span className="text-lg">
