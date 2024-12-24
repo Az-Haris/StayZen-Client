@@ -50,7 +50,7 @@ const Rooms = () => {
       ></SectionTitle>
       <div className="mt-10 mb-20 container mx-auto px-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 justify-center">
         {Array.isArray(rooms) && rooms.map((room) => (
-          <div
+          <Link to={`/rooms/${room._id}`}
             key={room.id}
             className="card card-compact bg-base-100 shadow-xl transform hover:-translate-y-2 transition duration-500 border border-base-300"
           >
@@ -79,16 +79,15 @@ const Rooms = () => {
                   {room.bedType}
                 </p>
                 <p>
+                  <span className="font-bold">Rating : </span>
+                  {`${room.rating}/${room.ratingCount}`}
+                </p>
+                <p>
                   <span className="font-bold">Price : </span>${room.pricePerNight} /night
                 </p>
               </div>
-              <div className="card-actions justify-end">
-                <Link to={`/rooms/${room._id}`} className="btn btn-primary">
-                  Book Now
-                </Link>
-              </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

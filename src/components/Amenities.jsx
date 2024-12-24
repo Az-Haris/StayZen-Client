@@ -29,7 +29,7 @@ const Amenities = () => {
       ></SectionTitle>
       <div className="flex flex-wrap gap-5 justify-center">
       {
-        amenities.map((amenity, idx)=> <span key={idx} className="p-3 md:p-5 rounded-full border border-primary hover:bg-primary hover:text-base-100 transition duration-500 transform hover:scale-105 cursor-wait">{amenity}</span>)
+        amenities.map((amenity, idx)=> <span key={idx} className="p-3 md:p-5 rounded-full border border-primary hover:bg-primary hover:text-base-100 transition duration-300 transform hover:scale-105 cursor-wait">{amenity}</span>)
       }
       </div>
     </div>
