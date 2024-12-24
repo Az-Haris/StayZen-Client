@@ -10,6 +10,7 @@ import { IoMdPerson } from "react-icons/io";
 import { FaLink } from "react-icons/fa";
 import { FaKey } from "react-icons/fa";
 import { AuthContext } from "../contexts/contexts";
+import axios from "axios";
 
 const Register = () => {
   const [showPass, setShowPass] = useState(false);
@@ -64,6 +65,16 @@ const Register = () => {
             photoURL: photo,
           };
           setUser(updatedUser);
+          axios
+            .post("https://stay-zen.vercel.app/users", {
+              email,
+              displayName: name,
+              photoURL: photo,
+              authMethod: "email-password",
+            })
+            .catch(function (error) {
+              Swal.fire("Error!", `${error}`, "error");
+            });
           setLoading(false);
           Swal.fire("Success!", "Successfully Registered!", "success");
           navigate(location?.state ? location.state : "/");
@@ -178,8 +189,22 @@ const Register = () => {
                       .then((result) => {
                         const user = result.user;
                         setUser(user);
+                        axios
+                          .post("https://stay-zen.vercel.app/users", {
+                            email: user?.email,
+                            displayName: user?.displayName,
+                            photoURL: user?.photoURL,
+                            authMethod: "google",
+                          })
+                          .catch(function (error) {
+                            Swal.fire("Error!", `${error}`, "error");
+                          });
                         setLoading(false);
-                        Swal.fire("Success!", "Successfully Logged In!", "success");
+                        Swal.fire(
+                          "Success!",
+                          "Successfully Logged In!",
+                          "success"
+                        );
                         navigate(location?.state ? location.state : "/");
                       })
                       .catch((error) => {

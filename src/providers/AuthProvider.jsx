@@ -5,6 +5,7 @@ import {
   getAuth,
   GoogleAuthProvider,
   onAuthStateChanged,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
@@ -19,6 +20,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const provider = new GoogleAuthProvider();
+  const [email, setEmail] = useState('')
 
   // Register user
   const registerNewUser = (email, pass) => {
@@ -44,6 +46,11 @@ const AuthProvider = ({ children }) => {
     return updateProfile(auth.currentUser, userInfo);
   };
 
+  // Password Reset
+  const passwordReset = (emailValue) =>{
+    return sendPasswordResetEmail(auth, emailValue)
+  }
+
   //   Login With Google
   const loginWithGoogle = () => {
     setLoading(true);
@@ -61,6 +68,9 @@ const AuthProvider = ({ children }) => {
     logOut,
     updateUser,
     loginWithGoogle,
+    email,
+    setEmail,
+    passwordReset,
   };
 
   useEffect(() => {

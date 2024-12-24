@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import LoginImage from "../assets/login.json";
 import Lottie from "lottie-react";
 import { IoMdEyeOff } from "react-icons/io";
@@ -9,9 +9,10 @@ import Swal from "sweetalert2";
 
 const Login = () => {
   const [showPass, setShowPass] = useState(false);
-  const { loginUser, setUser, setLoading, loginWithGoogle } =
+  const { loginUser, setUser, setLoading, loginWithGoogle, setEmail } =
     useContext(AuthContext);
   const navigate = useNavigate();
+  const emailRef = useRef();
   const location = useLocation();
 
   const handleLogin = (e) => {
@@ -34,6 +35,11 @@ const Login = () => {
         const errorMessage = error.message;
         Swal.fire("Error!", `${errorCode} ${errorMessage}`, "error");
       });
+  };
+
+  const handleForgotPass = () => {
+    setEmail(emailRef.current.value);
+    navigate("/auth/forgot-password");
   };
   return (
     <div className="hero bg-base-200 py-0 lg:py-10">
@@ -64,6 +70,7 @@ const Login = () => {
                   <input
                     type="email"
                     name="email"
+                    ref={emailRef}
                     autoComplete="email"
                     className="grow"
                     placeholder="Email"
@@ -105,6 +112,7 @@ const Login = () => {
                 </label>
                 <label className="label">
                   <Link
+                  onClick={handleForgotPass}
                     to={"/auth/forgot-password"}
                     className="label-text-alt link link-hover hover:link-primary"
                   >
