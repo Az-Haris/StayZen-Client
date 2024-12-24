@@ -1,13 +1,18 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import LoginImage from "../assets/login.json";
 import Lottie from "lottie-react";
 import { IoMdEyeOff } from "react-icons/io";
 import { IoMdEye } from "react-icons/io";
-import { Link } from "react-router-dom";
-import { toast } from "react-toastify";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../contexts/contexts";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const [showPass, setShowPass] = useState(false);
+  const {loginUser, setUser, setLoading} = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -15,7 +20,19 @@ const Login = () => {
     const email = form.get("email");
     const password = form.get("password");
 
-    toast.success(`${email} ${password}`);
+    // Login User
+    loginUser(email, password)
+    .then(result=>{
+      const user = result.user;
+      setUser(user);
+      setLoading(false);
+      navigate(location?.state ? location.state : "/")
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      Swal.fire("Error!", `${errorCode} ${errorMessage}`, "error");
+    });
   };
   return (
     <div className="hero bg-base-200 py-0 lg:py-10">

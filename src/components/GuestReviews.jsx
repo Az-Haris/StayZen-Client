@@ -13,7 +13,7 @@ const GuestReviews = () => {
       ></SectionTitle>
       <Marquee pauseOnHover={true} speed={50} className="space-x-10">
         <div className="space-x-10 flex">
-          <div className="bg-base-300 rounded-lg p-5 space-y-2">
+          <div className="bg-base-200 rounded-lg p-5 space-y-2 shadow-xl border border-base-300">
             <div className="flex items-center gap-3">
               <img src="" className="w-20 rounded-full" alt="Guest Avatar" />
               <div>
