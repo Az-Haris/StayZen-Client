@@ -36,6 +36,7 @@ const RoomDetails = () => {
     },
   });
 
+
   const {
     name,
     image,
