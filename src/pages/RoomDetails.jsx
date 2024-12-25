@@ -6,10 +6,11 @@ import moment from "moment";
 import Swal from "sweetalert2";
 import { useContext, useState } from "react";
 import { AuthContext } from "../contexts/contexts";
+import ReactStars from "react-rating-stars-component";
 
 const RoomDetails = () => {
-  const navigate = useNavigate()
-  const location = useLocation()
+  const navigate = useNavigate();
+  const location = useLocation();
   const { user } = useContext(AuthContext);
   const [bookingDays, setBookingDays] = useState(1); // Default 1 day
   const [startDate, setStartDate] = useState(moment().format("YYYY-MM-DD")); // Default today
@@ -63,7 +64,6 @@ const RoomDetails = () => {
     },
   });
 
-
   const isDateBooked = (date) => {
     return bookedDates.includes(moment(date).format("YYYY-MM-DD"));
   };
@@ -104,6 +104,11 @@ const RoomDetails = () => {
 
     const bookingData = {
       roomId: id,
+      name,
+      image,
+      bedType,
+      size,
+      pricePerNight,
       startDate,
       endDate: moment(startDate)
         .add(bookingDays - 1, "days")
@@ -115,21 +120,20 @@ const RoomDetails = () => {
       .post("https://stay-zen.vercel.app/bookings", bookingData)
       .then(() => {
         Swal.fire("Success!", "Successfully Booked Room", "success");
+        navigate("/rooms");
       })
       .catch((error) => {
         Swal.fire("Error!", `${error}`, "error");
       });
   };
 
-
   const handleBookingClick = () => {
     if (user) {
       document.getElementById("my_modal_5").showModal();
     } else {
-      navigate("/auth/login", { state: location.pathname});
+      navigate("/auth/login", { state: location.pathname });
     }
   };
-
 
   return (
     <div className="container mx-auto px-3 mt-5 mb-20">
@@ -166,17 +170,26 @@ const RoomDetails = () => {
                   <span className="font-bold">Availability : </span>
                   {availability ? "Available" : "Not Available"}
                 </p>
-                <p>
+                <div className="flex items-center gap-1">
                   <span className="font-bold">Rating : </span>
-                  {`${rating}/${ratingCount}`}
-                </p>
+                  <span className="flex items-center gap-5">
+                    {`${rating}/${ratingCount}`}
+                    <ReactStars
+                      count={5}
+                      value={rating}
+                      size={30}
+                      activeColor="#ffd700"
+                      edit={false}
+                    />
+                  </span>
+                </div>
                 <p>
                   <span className="font-bold">Price : </span>${pricePerNight}{" "}
                   /night
                 </p>
               </div>
               <button
-                className="btn btn-primary px-20 mt-5"
+                className={`btn btn-primary px-20 mt-5 ${isLoading? "btn-disabled" : ""}`}
                 onClick={handleBookingClick}
               >
                 Book Now
@@ -223,7 +236,7 @@ const RoomDetails = () => {
 
           <div className="card-actions justify-center">
             <button
-              className="btn btn-primary px-20"
+              className={`btn btn-primary px-20 ${isLoading? 'btn-disabled' : ""}`}
               onClick={handleBookingClick}
             >
               Book Now
@@ -317,7 +330,9 @@ const RoomDetails = () => {
                 </button>
                 <button
                   type="submit"
-                  className={`btn px-8 btn-primary ${isDateBooked(startDate) ? "btn-disabled" : ""}`}
+                  className={`btn px-8 btn-primary ${
+                    isDateBooked(startDate) ? "btn-disabled" : ""
+                  }`}
                   onClick={() => document.getElementById("my_modal_5").close()}
                 >
                   Confirm Booking

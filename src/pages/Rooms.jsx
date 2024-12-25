@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import SectionTitle from "../utilities/SectionTitle";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import ReactStars from "react-rating-stars-component";
 
 const Rooms = () => {
   const {
@@ -49,46 +50,58 @@ const Rooms = () => {
         }
       ></SectionTitle>
       <div className="mt-10 mb-20 container mx-auto px-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 justify-center">
-        {Array.isArray(rooms) && rooms.map((room) => (
-          <Link to={`/rooms/${room._id}`}
-            key={room.id}
-            className="card card-compact bg-base-100 shadow-xl transform hover:-translate-y-2 transition duration-500 border border-base-300"
-          >
-            <figure className="h-52">
-              <img
-                className="object-cover h-full w-full transform hover:scale-105 transition duration-500"
-                src={room.image}
-                alt="{countryName}"
-              />
-            </figure>
-            <div className="card-body">
-              <h2 className="card-title text-primary font-bold text-2xl">
-                {room.name}
-              </h2>
-              <div className="space-y-2 text-lg">
-                <p>
-                  <span className="font-bold">Capacity : </span>
-                  {room.capacity}
-                </p>
-                <p>
-                  <span className="font-bold">Size : </span>
-                  {room.size}
-                </p>
-                <p>
-                  <span className="font-bold">Bed Type : </span>
-                  {room.bedType}
-                </p>
-                <p>
-                  <span className="font-bold">Rating : </span>
-                  {`${room.rating}/${room.ratingCount}`}
-                </p>
-                <p>
-                  <span className="font-bold">Price : </span>${room.pricePerNight} /night
-                </p>
+        {Array.isArray(rooms) &&
+          rooms.map((room) => (
+            <Link
+              to={`/rooms/${room._id}`}
+              key={room.id}
+              className="card card-compact bg-base-100 shadow-xl transform hover:-translate-y-2 transition duration-500 border border-base-300"
+            >
+              <figure className="h-52">
+                <img
+                  className="object-cover h-full w-full transform hover:scale-105 transition duration-500"
+                  src={room.image}
+                  alt="{countryName}"
+                />
+              </figure>
+              <div className="card-body">
+                <h2 className="card-title text-primary font-bold text-2xl">
+                  {room.name}
+                </h2>
+                <div className="space-y-2 text-lg">
+                  <p>
+                    <span className="font-bold">Capacity : </span>
+                    {room.capacity}
+                  </p>
+                  <p>
+                    <span className="font-bold">Size : </span>
+                    {room.size}
+                  </p>
+                  <p>
+                    <span className="font-bold">Bed Type : </span>
+                    {room.bedType}
+                  </p>
+                  <div className="flex items-center gap-1">
+                    <span className="font-bold">Rating : </span>
+                    <span className="flex items-center gap-5">
+                      {`${room.rating}/${room.ratingCount}`}
+                      <ReactStars
+                        count={5}
+                        value={room.rating}
+                        size={30}
+                        activeColor="#ffd700"
+                        edit={false}
+                      />
+                    </span>
+                  </div>
+                  <p>
+                    <span className="font-bold">Price : </span>$
+                    {room.pricePerNight} /night
+                  </p>
+                </div>
               </div>
-            </div>
-          </Link>
-        ))}
+            </Link>
+          ))}
       </div>
     </div>
   );
