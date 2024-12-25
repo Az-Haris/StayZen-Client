@@ -4,7 +4,7 @@ import SectionTitle from "../utilities/SectionTitle";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import moment from "moment";
 import Swal from "sweetalert2";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/contexts";
 import ReactStars from "react-rating-stars-component";
 
@@ -12,6 +12,7 @@ const RoomDetails = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { user } = useContext(AuthContext);
+  const [rating, setRating] = useState(0);
   const [bookingDays, setBookingDays] = useState(1); // Default 1 day
   const [startDate, setStartDate] = useState(moment().format("YYYY-MM-DD")); // Default today
 
@@ -36,7 +37,6 @@ const RoomDetails = () => {
     },
   });
 
-
   const {
     name,
     image,
@@ -46,8 +46,6 @@ const RoomDetails = () => {
     pricePerNight,
     description,
     amenities,
-    rating,
-    ratingCount,
     availability,
   } = roomInfo;
 
@@ -68,6 +66,38 @@ const RoomDetails = () => {
   const isDateBooked = (date) => {
     return bookedDates.includes(moment(date).format("YYYY-MM-DD"));
   };
+
+  // Fetch reviews
+  const { data: reviews = [] } = useQuery({
+    queryKey: ["reviews"],
+    queryFn: async () => {
+      const res = await axios.get(
+        `https://stay-zen.vercel.app/review?roomId=${id}`
+      );
+      return res.data;
+    },
+  });
+
+  useEffect(() => {
+    if (reviews.length > 0) {
+      const totalRating = reviews.reduce(
+        (sum, review) => sum + review.rating,
+        0
+      );
+      setRating((totalRating / reviews.length).toFixed(1));
+    } else{
+      setRating(0)
+    }
+  }, [reviews]);
+
+  // const ratingCalculate = ()=>{
+  //   let totalRating = 0;
+  //   for(const review of reviews){
+  //     totalRating= totalRating + review.rating;
+  //   }
+  //   setRating(totalRating / reviews.length)
+  // }
+  // ratingCalculate()
 
   if (isLoading) {
     return (
@@ -136,6 +166,7 @@ const RoomDetails = () => {
     }
   };
 
+
   return (
     <div className="container mx-auto px-3 mt-5 mb-20">
       <div className="card card-compact bg-base-100 shadow-xl">
@@ -174,14 +205,17 @@ const RoomDetails = () => {
                 <div className="flex items-center gap-1">
                   <span className="font-bold">Rating : </span>
                   <span className="flex items-center gap-5">
-                    {`${rating}/${ratingCount}`}
-                    <ReactStars
-                      count={5}
-                      value={rating}
-                      size={30}
-                      activeColor="#ffd700"
-                      edit={false}
-                    />
+                    {`${rating}/${reviews.length}`}
+                    {rating ? (
+                      <ReactStars
+                        count={5}
+                        value={rating}
+                        size={30}
+                        activeColor="#ffd700"
+                        edit={false}
+                        isHalf={true}
+                      />
+                    ) : ""}
                   </span>
                 </div>
                 <p>
@@ -190,7 +224,9 @@ const RoomDetails = () => {
                 </p>
               </div>
               <button
-                className={`btn btn-primary px-20 mt-5 ${isLoading? "btn-disabled" : ""}`}
+                className={`btn btn-primary px-20 mt-5 ${
+                  isLoading ? "btn-disabled" : ""
+                }`}
                 onClick={handleBookingClick}
               >
                 Book Now
@@ -222,22 +258,50 @@ const RoomDetails = () => {
 
           <div className="mb-5 p-5 border border-base-300 rounded-xl shadow-xl">
             <h2 className="text-2xl font-bold text-accent mb-5">Reviews</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-              <h2 className="rounded-xl shadow-xl border border-base-300 p-5 transition duration-300 transform hover:scale-105">
-                review
-              </h2>
-              <h2 className="rounded-xl shadow-xl border border-base-300 p-5 transition duration-300 transform hover:scale-105">
-                review
-              </h2>
-              <h2 className="rounded-xl shadow-xl border border-base-300 p-5 transition duration-300 transform hover:scale-105">
-                review
-              </h2>
-            </div>
+            {
+              reviews.length>0 ? <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {reviews.map((review) => (
+                <div
+                  key={review._id}
+                  className="rounded-xl shadow-xl border border-base-300 p-5 transition duration-300 transform hover:scale-105"
+                >
+                  <div className="flex items-center gap-3">
+                    <img
+                      src={review.photoURL}
+                      className="w-12 rounded-full"
+                      alt="Guest Avatar"
+                    />
+                    <div>
+                      <h2 className="font-bold text-xl">{review.userName}</h2>
+                      <p>{review.reviewDate}</p>
+                    </div>
+                  </div>
+                  <div>
+                    <div className="flex items-center justify-between mt-5 gap-5">
+                      <h3 className="font-semibold text-md">Review :</h3>
+                      <ReactStars
+                        count={5}
+                        size={30}
+                        value={review.rating}
+                        activeColor="#ffd700"
+                        edit={false}
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <p className="max-w-72">{review.review}</p>
+                  </div>
+                </div>
+              ))}
+            </div> : <p className="font-bold text-lg">No reviews for this room</p>
+            }
           </div>
 
           <div className="card-actions justify-center">
             <button
-              className={`btn btn-primary px-20 ${isLoading? 'btn-disabled' : ""}`}
+              className={`btn btn-primary px-20 ${
+                isLoading ? "btn-disabled" : ""
+              }`}
               onClick={handleBookingClick}
             >
               Book Now

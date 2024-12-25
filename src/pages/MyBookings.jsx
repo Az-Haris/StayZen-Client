@@ -9,12 +9,16 @@ import { MdRateReview } from "react-icons/md";
 import { Tooltip } from "react-tooltip";
 import Swal from "sweetalert2";
 import moment from "moment";
+import ReactStars from "react-rating-stars-component";
 
 const MyBookings = () => {
-  const [id, setId] = useState(null)
+  const [id, setId] = useState(null);
+  const [rating, setRating] = useState(0);
+  const [ratingStars, setRatingStars] = useState(true);
   const [bookingDays, setBookingDays] = useState(1); // Default 1 day
   const { user } = useContext(AuthContext);
   const [startDate, setStartDate] = useState(moment().format("YYYY-MM-DD")); // Default today
+  const today = moment().format("YYYY-MM-DD");
 
   const handleIncreaseDays = () => setBookingDays(bookingDays + 1);
   const handleDecreaseDays = () => {
@@ -95,19 +99,52 @@ const MyBookings = () => {
     const bookingData = {
       id,
       startDate,
-      endDate: moment(startDate).add(bookingDays - 1, "days").format("YYYY-MM-DD"),
+      endDate: moment(startDate)
+        .add(bookingDays - 1, "days")
+        .format("YYYY-MM-DD"),
     };
 
     axios
-    .put(`https://stay-zen.vercel.app/update-booking`, bookingData)
-    .then(() => {
-      refetch(); // Refresh bookings after updating
-      refetchDates();
-      Swal.fire("Success!", "Booking date updated successfully.", "success");
-    })
-    .catch((error) => {
-      Swal.fire("Error!", `Failed to update booking: ${error.message}`, "error");
-    });
+      .put(`https://stay-zen.vercel.app/update-booking`, bookingData)
+      .then(() => {
+        refetch(); // Refresh bookings after updating
+        refetchDates();
+        Swal.fire("Success!", "Booking date updated successfully.", "success");
+      })
+      .catch((error) => {
+        Swal.fire(
+          "Error!",
+          `Failed to update booking: ${error.message}`,
+          "error"
+        );
+      });
+  };
+
+  // Review Handler
+  const handleReview = (e) => {
+    e.preventDefault();
+    const review = e.target.review.value;
+    const reviewData = {
+      roomId: id,
+      userName: user.displayName,
+      photoURL: user.photoURL,
+      reviewDate: today,
+      rating,
+      review,
+    };
+
+    axios
+      .post("https://stay-zen.vercel.app/review", reviewData)
+      .then(() => {
+        document.getElementById("review_modal").close();
+        Swal.fire("Success!", "Successfully Submitted Review", "success");
+        setRating(0);
+        setRatingStars(false);
+      })
+      .catch((error) => {
+        document.getElementById("review_modal").close();
+        Swal.fire("Error!", `${error}`, "error");
+      });
   };
 
   if (isLoading) {
@@ -200,6 +237,11 @@ const MyBookings = () => {
                   <button
                     data-tooltip-id="action-tooltip"
                     data-tooltip-content="Review This Room"
+                    onClick={() => {
+                      setId(booking.roomId);
+                      setRatingStars(true);
+                      document.getElementById("review_modal").showModal();
+                    }}
                     className="btn btn-success text-base-100 btn-sm"
                   >
                     <MdRateReview />
@@ -207,8 +249,8 @@ const MyBookings = () => {
                   <button
                     data-tooltip-id="action-tooltip"
                     data-tooltip-content="Edit Booking Date"
-                    onClick={()=>{
-                      setId(booking.roomId)
+                    onClick={() => {
+                      setId(booking.roomId);
                       document.getElementById("my_modal_5").showModal();
                     }}
                     className="btn btn-warning text-base-100 btn-sm"
@@ -311,6 +353,72 @@ const MyBookings = () => {
       )}
 
       {/* Apply form end */}
+
+      {/* Review Form */}
+
+      {isLoading ? (
+        ""
+      ) : (
+        <dialog
+          id="review_modal"
+          className="modal modal-bottom sm:modal-middle"
+        >
+          <div className="modal-box">
+            <h3 className="font-bold text-2xl text-center mb-3">
+              Write a Review
+            </h3>
+            <form onSubmit={handleReview}>
+              <p className="font-bold text-xl mt-10 flex gap-3">
+                <span>Rating : </span>
+
+                <span>
+                  {ratingStars && (
+                    <ReactStars
+                      count={5}
+                      onChange={(newRating) => {
+                        setRating(newRating);
+                      }}
+                      size={30}
+                      activeColor="#ffd700"
+                    />
+                  )}
+                </span>
+              </p>
+              <p className="mt-5 font-bold text-xl">Review :</p>
+              <textarea
+                rows={4}
+                name="review"
+                className="textarea textarea-bordered w-full mt-2"
+                placeholder="Write a review ..."
+                required
+              ></textarea>
+
+              <div className="modal-action space-x-3" method="dialog">
+                {/* if there is a button in form, it will close the modal */}
+                <button
+                  type="button"
+                  className="btn px-8"
+                  onClick={() => {
+                    setRating(0);
+                    setRatingStars(false);
+                    document.getElementById("review_modal").close();
+                  }}
+                >
+                  Close
+                </button>
+                <button
+                  type="submit"
+                  className={`btn px-8 btn-primary`}
+                >
+                  Submit Review
+                </button>
+              </div>
+            </form>
+          </div>
+        </dialog>
+      )}
+
+      {/* Review form end */}
     </div>
   );
 };

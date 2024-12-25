@@ -21,6 +21,8 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const provider = new GoogleAuthProvider();
   const [email, setEmail] = useState('')
+  const [rating, setRating] = useState(0);
+  const [ratingCount, setRatingCount] = useState(0)
 
   // Register user
   const registerNewUser = (email, pass) => {
@@ -71,6 +73,10 @@ const AuthProvider = ({ children }) => {
     email,
     setEmail,
     passwordReset,
+    rating,
+    setRating,
+    ratingCount,
+    setRatingCount
   };
 
   useEffect(() => {
