@@ -11,7 +11,6 @@ import Logo from "./Logo";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/contexts";
 import { FaRegUserCircle } from "react-icons/fa";
-import { FaUserCircle } from "react-icons/fa";
 import Swal from "sweetalert2";
 
 const Navbar = () => {
@@ -125,7 +124,7 @@ const Navbar = () => {
                         src={user?.photoURL}
                       />
                     ) : (
-                      <FaUserCircle className="text-4xl text-accent" />
+                      <FaRegUserCircle className="text-4xl text-accent" />
                     )}
                   </div>
                 </div>

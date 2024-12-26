@@ -2,10 +2,12 @@ import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { ToastContainer, Slide } from "react-toastify";
+import ScrollToTop from "../utilities/ScrollToTop";
 
 const Root = () => {
   return (
     <div>
+      <ScrollToTop></ScrollToTop>
       <header>
       <Navbar></Navbar>
 
