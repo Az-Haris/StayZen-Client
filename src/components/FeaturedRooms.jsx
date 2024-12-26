@@ -55,7 +55,7 @@ const FeaturedRooms = () => {
           "Discover our handpicked selection of featured rooms, offering premium comfort, modern amenities, and the perfect ambiance for your stay."
         }
       ></SectionTitle>
-      <div className="mt-10 container mx-auto px-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 justify-center">
+      <div className="mt-10 container mx-auto px-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 justify-center">
         {topRooms.map((topRoom) => (
           <div
             key={topRoom._id}

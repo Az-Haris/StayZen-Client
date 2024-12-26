@@ -136,16 +136,16 @@ const MyBookings = () => {
     axios
       .post("https://stay-zen.vercel.app/review", reviewData)
       .then(() => {
-        document.getElementById("review_modal").close();
         Swal.fire("Success!", "Successfully Submitted Review", "success");
         setRating(0);
         setRatingStars(false);
       })
       .catch((error) => {
-        document.getElementById("review_modal").close();
         Swal.fire("Error!", `${error}`, "error");
       });
   };
+
+
 
   if (isLoading) {
     return (
@@ -407,6 +407,8 @@ const MyBookings = () => {
                   Close
                 </button>
                 <button
+                onClick={()=>{
+                  document.getElementById("review_modal").close();}}
                   type="submit"
                   className={`btn px-8 btn-primary`}
                 >

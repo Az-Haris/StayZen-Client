@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import SectionTitle from "../utilities/SectionTitle";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import ReactStars from "react-rating-stars-component";
+import ReactStars from "react-rating-stars-component"; 
 
 const Rooms = () => {
   const {
