@@ -18,6 +18,8 @@ const Rooms = () => {
     },
   });
 
+
+
   if (isLoading) {
     return (
       <div className="mt-10 mb-24">
@@ -54,7 +56,7 @@ const Rooms = () => {
           rooms.map((room) => (
             <Link
               to={`/rooms/${room._id}`}
-              key={room.id}
+              key={room._id}
               className="card card-compact bg-base-100 shadow-xl transform hover:-translate-y-2 transition duration-500 border border-base-300"
             >
               <figure className="h-52">
@@ -87,10 +89,12 @@ const Rooms = () => {
                       {`${room.rating}/${room.ratingCount}`}
                       <ReactStars
                         count={5}
+                        key={room.rating}
                         value={room.rating}
                         size={30}
                         activeColor="#ffd700"
                         edit={false}
+                        isHalf={true}
                       />
                     </span>
                   </div>

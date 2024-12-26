@@ -68,8 +68,8 @@ const GuestReviews = () => {
               <div className="flex items-center gap-3">
                 <img
                   src={review.photoURL}
-                  className="w-12 rounded-full"
-                  alt="Guest Avatar"
+                  className="w-12 h-12 rounded-full border border-base-300"
+                  alt="Avatar"
                 />
                 <div>
                   <h2 className="font-bold text-xl">{review.userName}</h2>

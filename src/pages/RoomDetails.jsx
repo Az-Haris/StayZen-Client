@@ -4,7 +4,7 @@ import SectionTitle from "../utilities/SectionTitle";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import moment from "moment";
 import Swal from "sweetalert2";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../contexts/contexts";
 import ReactStars from "react-rating-stars-component";
 
@@ -12,7 +12,6 @@ const RoomDetails = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const { user } = useContext(AuthContext);
-  const [rating, setRating] = useState(0);
   const [bookingDays, setBookingDays] = useState(1); // Default 1 day
   const [startDate, setStartDate] = useState(moment().format("YYYY-MM-DD")); // Default today
 
@@ -43,6 +42,8 @@ const RoomDetails = () => {
     capacity,
     size,
     bedType,
+    rating,
+    ratingCount,
     pricePerNight,
     description,
     amenities,
@@ -78,17 +79,17 @@ const RoomDetails = () => {
     },
   });
 
-  useEffect(() => {
-    if (reviews.length > 0) {
-      const totalRating = reviews.reduce(
-        (sum, review) => sum + review.rating,
-        0
-      );
-      setRating((totalRating / reviews.length).toFixed(1));
-    } else{
-      setRating(0)
-    }
-  }, [reviews]);
+  // useEffect(() => {
+  //   if (reviews.length > 0) {
+  //     const totalRating = reviews.reduce(
+  //       (sum, review) => sum + review.rating,
+  //       0
+  //     );
+  //     setRating((totalRating / reviews.length).toFixed(1));
+  //   } else{
+  //     setRating(0)
+  //   }
+  // }, [reviews]);
 
   // const ratingCalculate = ()=>{
   //   let totalRating = 0;
@@ -205,7 +206,7 @@ const RoomDetails = () => {
                 <div className="flex items-center gap-1">
                   <span className="font-bold">Rating : </span>
                   <span className="flex items-center gap-5">
-                    {`${rating}/${reviews.length}`}
+                    {`${rating}/${ratingCount}`}
                     {rating ? (
                       <ReactStars
                         count={5}
