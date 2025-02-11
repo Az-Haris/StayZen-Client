@@ -26,7 +26,7 @@ const Banner = () => {
     >
       <SwiperSlide
         id="slider1"
-        className="min-h-[calc(100vh-64px)] flex-col items-center justify-center gap-5 text-center px-3"
+        className="min-h-[calc(50vh-64px)] md:min-h-[calc(100vh-64px)] flex-col items-center justify-center gap-5 text-center px-3 py-10"
       >
         <h3 className="text-sm md:text-2xl font-bold text-gray-200">
           Explore{" "}
@@ -52,7 +52,7 @@ const Banner = () => {
 
       <SwiperSlide
         id="slider2"
-        className="min-h-[calc(100vh-64px)] flex-col items-center justify-center gap-5 text-center px-3"
+        className="min-h-[calc(50vh-64px)] md:min-h-[calc(100vh-64px)] flex-col items-center justify-center gap-5 text-center px-3 py-10"
       >
         <h3 className="text-sm md:text-2xl font-bold text-gray-200">
           Discover{" "}

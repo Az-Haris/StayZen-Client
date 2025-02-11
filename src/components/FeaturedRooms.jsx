@@ -69,43 +69,48 @@ const FeaturedRooms = () => {
               />
             </figure>
             <div className="card-body">
-              <h2 className="card-title text-primary font-bold text-2xl">
-                {topRoom.name}
-              </h2>
-              <div className="space-y-2 text-lg">
-                <p>
-                  <span className="font-bold">Capacity : </span>
-                  {topRoom.capacity}
-                </p>
-                <p>
-                  <span className="font-bold">Size : </span>
-                  {topRoom.size}
-                </p>
-                <p>
-                  <span className="font-bold">Bed Type : </span>
-                  {topRoom.bedType}
-                </p>
-                <div className="flex items-center gap-1">
-                  <span className="font-bold">Rating : </span>
-                  <span className="flex items-center gap-5">
-                    {`${topRoom.rating}/${topRoom.ratingCount}`}
-                    <ReactStars
-                      count={5}
-                      key={topRoom.rating}
-                      value={topRoom.rating}
-                      size={30}
-                      activeColor="#ffd700"
-                      edit={false}
-                      isHalf={true}
-                    />
+              <div className="flex items-center justify-between">
+                <h2 className="card-title text-primary font-bold text-2xl">
+                  {topRoom.name}
+                </h2>
+                <span>
+                  <span className="font-bold text-xl">
+                    {topRoom.size.split(" ")[0]}
+                  </span>{" "}
+                  {topRoom.size.split(" ")[1]}
+                </span>
+              </div>
+              <span className="flex items-center gap-2 text-lg">
+                {`${topRoom.rating}/${topRoom.ratingCount}`}
+                <ReactStars
+                  count={5}
+                  key={topRoom.rating}
+                  value={topRoom.rating}
+                  size={30}
+                  activeColor="#ffd700"
+                  edit={false}
+                  isHalf={true}
+                />
+              </span>
+              <div className="space-y-3 text-lg">
+                <div className="flex items-center justify-between">
+                  <p>{topRoom.bedType}</p>
+                  <span>
+                    <span className="font-bold text-xl">
+                      {topRoom.capacity}
+                    </span>{" "}
+                    person
                   </span>
                 </div>
-                <p>
-                  <span className="font-bold">Price : </span>${" "}
-                  {topRoom.pricePerNight} /Night
-                </p>
               </div>
-              <div className="card-actions justify-end">
+
+              <div className="flex items-center justify-between mt-3">
+                <p>
+                  <span className="text-3xl font-bold">
+                    $ {topRoom.pricePerNight}
+                  </span>{" "}
+                  /Night
+                </p>
                 <Link to={`/rooms/${topRoom._id}`} className="btn btn-primary">
                   Book Now
                 </Link>
