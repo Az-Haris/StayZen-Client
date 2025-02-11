@@ -22,7 +22,7 @@ const Banner = () => {
       }}
       navigation={true}
       modules={[Autoplay, Pagination, Navigation]}
-      className="mySwiper"
+      className="mySwiper  z-10"
     >
       <SwiperSlide
         id="slider1"
@@ -36,7 +36,7 @@ const Banner = () => {
           Worldwide
         </h3>
 
-        <h1 className="text-4xl font-bold font-poppins text-white">
+        <h1 className="text-4xl lg:text-6xl font-bold font-poppins text-white">
           Discover Your Perfect Stay Today
         </h1>
         <p className="max-w-[700px] text-gray-300 text-sm md:text-lg">
@@ -62,7 +62,7 @@ const Banner = () => {
           You&apos;ll Love
         </h3>
 
-        <h1 className="text-4xl font-bold font-poppins text-white">
+        <h1 className="text-4xl lg:text-6xl font-bold font-poppins text-white">
           Book Comfort, Enjoy Every Moment
         </h1>
         <p className="max-w-[700px] text-gray-300 text-sm md:text-lg">

@@ -1,7 +1,7 @@
 import Logo from "./Logo";
 import { FaFacebook } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
-import { FaSquareXTwitter } from "react-icons/fa6";
+import { FaSquareGithub} from "react-icons/fa6";
 import { FaWhatsappSquare } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { MdHome } from "react-icons/md";
@@ -31,17 +31,17 @@ const Footer = () => {
             </a>
             <a
               className="hover:text-primary"
-              href="https://facebook.com/alimuzzaman.haris"
+              href="https://www.linkedin.com/in/alimuzzaman-haris/"
               target="_blank"
             >
               <FaLinkedin className="text-3xl translate transition duration-300 hover:scale-105" />
             </a>
             <a
               className="hover:text-primary"
-              href="https://facebook.com/alimuzzaman.haris"
+              href="https://github.com/Az-Haris"
               target="_blank"
             >
-              <FaSquareXTwitter className="text-3xl translate transition duration-300 hover:scale-105" />
+              <FaSquareGithub className="text-3xl translate transition duration-300 hover:scale-105" />
             </a>
             <a
               className="hover:text-primary"
@@ -55,25 +55,25 @@ const Footer = () => {
         <nav className="w-full">
           <h6 className="footer-title">Services</h6>
           <Link
-            to={"/"}
+            to={"/privacy"}
             className="transform hover:translate-x-1 transition duration-300 hover:text-primary"
           >
             Privacy
           </Link>
           <Link
-            to={"/"}
-            className="transform hover:translate-x-1 transition duration-300 hover:text-primary"
-          >
-            Help
-          </Link>
-          <Link
-            to={"/"}
+            to={"/terms"}
             className="transform hover:translate-x-1 transition duration-300 hover:text-primary"
           >
             Terms
           </Link>
           <Link
-            to={"/"}
+            to={"/help"}
+            className="transform hover:translate-x-1 transition duration-300 hover:text-primary"
+          >
+            Help
+          </Link>
+          <Link
+            to={"/faq"}
             className="transform hover:translate-x-1 transition duration-300 hover:text-primary"
           >
             FAQ

@@ -70,7 +70,7 @@ const Login = () => {
         <title>Login to your account | StayZen</title>
       </Helmet>
       <div className="hero bg-base-200 py-10">
-        <div className="flex lg:flex-row-reverse justify-center items-center gap-10 container mx-auto">
+        <div className="flex lg:flex-row-reverse justify-center items-start gap-10 container mx-auto">
           <div className="hidden w-1/2 lg:flex text-center lg:text-left">
             <Lottie animationData={LoginImage} />
           </div>
@@ -91,6 +91,7 @@ const Login = () => {
                     name="email"
                     ref={emailRef}
                     autoComplete="email"
+                    defaultValue="example@stayzen.com"
                     className="grow w-full"
                     placeholder="Email"
                   />
@@ -107,6 +108,7 @@ const Login = () => {
                     type={showPass ? "text" : "password"}
                     name="password"
                     autoComplete="current-password"
+                    defaultValue="DummyPass123"
                     className="grow w-full"
                     placeholder="Password"
                   />

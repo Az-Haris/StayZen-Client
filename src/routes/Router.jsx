@@ -11,6 +11,10 @@ import RoomDetails from "../pages/RoomDetails";
 import PrivateRoute from "./PrivateRoute";
 import MyBookings from "../pages/MyBookings";
 import ForgetPass from "../pages/ForgotPass";
+import Privacy from "../pages/Privacy";
+import Terms from "../pages/Terms";
+import Help from "../pages/Help";
+import FAQ from "../pages/FAQ";
 
 const Router = createBrowserRouter([
   {
@@ -32,6 +36,22 @@ const Router = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact></Contact>,
+      },
+      {
+        path: "/privacy",
+        element: <Privacy></Privacy>
+      },
+      {
+        path: "/terms",
+        element: <Terms></Terms>
+      },
+      {
+        path: "/help",
+        element: <Help></Help>
+      },
+      {
+        path: "/faq",
+        element: <FAQ></FAQ>
       },
       {
         path: "/rooms",

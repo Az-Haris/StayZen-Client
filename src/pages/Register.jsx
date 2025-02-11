@@ -118,150 +118,152 @@ const Register = () => {
           <div className="w-1/2 hidden lg:flex text-center lg:text-left -mb-16 lg:mb-0">
             <Lottie animationData={RegisterImage} />
           </div>
-          <div className="lg:w-1/2 card mx-3 w-full bg-base-100 shadow-2xl">
-            <form onSubmit={handleRegister} className="card-body">
-              <h2 className="text-2xl font-bold text-primary text-center ">
-                Register Your Account
-              </h2>
-              <div className="flex flex-col lg:flex-row gap-2 lg:gap-5">
-                <div className="form-control w-full">
-                  <label className="label">
-                    <span className="label-text">Name</span>
-                  </label>
-                  <label className="input input-bordered flex items-center gap-2">
-                    <IoMdPerson className="text-gray-500" />
-                    <input
-                      type="text"
-                      name="name"
-                      className="grow w-full"
-                      placeholder="Name"
-                    />
-                  </label>
-                </div>
-                <div className="form-control w-full">
-                  <label className="label">
-                    <span className="label-text">Photo</span>
-                  </label>
+          <div className="lg:w-1/2 mx-3 w-full">
+            <div className=" card w-full bg-base-100 shadow-2xl">
+              <form onSubmit={handleRegister} className="card-body">
+                <h2 className="text-2xl font-bold text-primary text-center ">
+                  Register Your Account
+                </h2>
+                <div className="flex flex-col lg:flex-row gap-2 lg:gap-5">
+                  <div className="form-control w-full">
+                    <label className="label">
+                      <span className="label-text">Name</span>
+                    </label>
+                    <label className="input input-bordered flex items-center gap-2">
+                      <IoMdPerson className="text-gray-500" />
+                      <input
+                        type="text"
+                        name="name"
+                        className="grow w-full"
+                        placeholder="Name"
+                      />
+                    </label>
+                  </div>
+                  <div className="form-control w-full">
+                    <label className="label">
+                      <span className="label-text">Photo</span>
+                    </label>
 
-                  {/* <FaLink className="text-gray-500" /> */}
-                  {/* <input
+                    {/* <FaLink className="text-gray-500" /> */}
+                    {/* <input
                       type="text"
                       name="photo"
                       className="grow"
                       placeholder="Photo URL"
                     /> */}
-                  <input
-                    required
-                    name="photo"
-                    type="file"
-                    accept="image/*"
-                    className="file-input file-input-bordered w-full"
-                  />
+                    <input
+                      required
+                      name="photo"
+                      type="file"
+                      accept="image/*"
+                      className="file-input file-input-bordered w-full"
+                    />
+                  </div>
                 </div>
-              </div>
 
-              <div className="flex flex-col lg:flex-row gap-2 lg:gap-5">
-                <div className="form-control w-full">
-                  <label className="label">
-                    <span className="label-text">Email</span>
-                  </label>
-                  <label className="input input-bordered flex items-center gap-2">
-                    <MdEmail className="text-gray-500" />
-                    <input
-                      type="email"
-                      name="email"
-                      autoComplete="email"
-                      className="grow w-full"
-                      placeholder="Email"
-                    />
-                  </label>
+                <div className="flex flex-col lg:flex-row gap-2 lg:gap-5">
+                  <div className="form-control w-full">
+                    <label className="label">
+                      <span className="label-text">Email</span>
+                    </label>
+                    <label className="input input-bordered flex items-center gap-2">
+                      <MdEmail className="text-gray-500" />
+                      <input
+                        type="email"
+                        name="email"
+                        autoComplete="email"
+                        className="grow w-full"
+                        placeholder="Email"
+                      />
+                    </label>
+                  </div>
+                  <div className="form-control w-full">
+                    <label className="label">
+                      <span className="label-text">Password</span>
+                    </label>
+                    <label className="relative input pr-0 input-bordered flex items-center gap-2">
+                      <FaKey className="text-gray-500" />
+                      <input
+                        type={showPass ? "text" : "password"}
+                        name="password"
+                        autoComplete="current-password"
+                        className="grow w-full"
+                        placeholder="Password"
+                      />
+                      <span
+                        onClick={() => {
+                          setShowPass(!showPass);
+                        }}
+                        className="absolute right-0 btn btn-sm text-xl bg-transparent border-none"
+                      >
+                        {showPass ? <IoMdEyeOff /> : <IoMdEye />}
+                      </span>
+                    </label>
+                  </div>
                 </div>
-                <div className="form-control w-full">
-                  <label className="label">
-                    <span className="label-text">Password</span>
-                  </label>
-                  <label className="relative input pr-0 input-bordered flex items-center gap-2">
-                    <FaKey className="text-gray-500" />
-                    <input
-                      type={showPass ? "text" : "password"}
-                      name="password"
-                      autoComplete="current-password"
-                      className="grow w-full"
-                      placeholder="Password"
-                    />
-                    <span
-                      onClick={() => {
-                        setShowPass(!showPass);
-                      }}
-                      className="absolute right-0 btn btn-sm text-xl bg-transparent border-none"
-                    >
-                      {showPass ? <IoMdEyeOff /> : <IoMdEye />}
+
+                <div className="form-control mt-6">
+                  <button type="submit" className="btn btn-primary">
+                    Register
+                  </button>
+                  <div className="divider">OR</div>
+                  <a
+                    onClick={() => {
+                      // Login with google
+                      loginWithGoogle()
+                        .then((result) => {
+                          const user = result.user;
+                          setUser(user);
+                          axios
+                            .post("https://stay-zen.vercel.app/users", {
+                              email: user?.email,
+                              displayName: user?.displayName,
+                              photoURL: user?.photoURL,
+                              authMethod: "google",
+                            })
+                            .catch(function (error) {
+                              Swal.fire("Error!", `${error}`, "error");
+                            });
+                          setLoading(false);
+                          Swal.fire(
+                            "Success!",
+                            "Successfully Logged In!",
+                            "success",
+                          );
+                          navigate(location?.state ? location.state : "/");
+                        })
+                        .catch((error) => {
+                          const errorCode = error.code;
+                          const errorMessage = error.message;
+                          Swal.fire(
+                            "Error!",
+                            `${errorCode} ${errorMessage}`,
+                            "error",
+                          );
+                        });
+                    }}
+                    className="btn hover:text-white btn-outline btn-primary w-full"
+                  >
+                    {" "}
+                    Register with{" "}
+                    <span className="text-lg">
+                      <span className="text-blue-700">G</span>
+                      <span className="text-red-600">o</span>
+                      <span className="text-yellow-500">o</span>
+                      <span className="text-blue-700">g</span>
+                      <span className="text-green-600">l</span>
+                      <span className="text-red-600">e</span>
                     </span>
-                  </label>
+                  </a>
                 </div>
-              </div>
-
-              <div className="form-control mt-6">
-                <button type="submit" className="btn btn-primary">
-                  Register
-                </button>
-                <div className="divider">OR</div>
-                <a
-                  onClick={() => {
-                    // Login with google
-                    loginWithGoogle()
-                      .then((result) => {
-                        const user = result.user;
-                        setUser(user);
-                        axios
-                          .post("https://stay-zen.vercel.app/users", {
-                            email: user?.email,
-                            displayName: user?.displayName,
-                            photoURL: user?.photoURL,
-                            authMethod: "google",
-                          })
-                          .catch(function (error) {
-                            Swal.fire("Error!", `${error}`, "error");
-                          });
-                        setLoading(false);
-                        Swal.fire(
-                          "Success!",
-                          "Successfully Logged In!",
-                          "success",
-                        );
-                        navigate(location?.state ? location.state : "/");
-                      })
-                      .catch((error) => {
-                        const errorCode = error.code;
-                        const errorMessage = error.message;
-                        Swal.fire(
-                          "Error!",
-                          `${errorCode} ${errorMessage}`,
-                          "error",
-                        );
-                      });
-                  }}
-                  className="btn hover:text-white btn-outline btn-primary w-full"
-                >
-                  {" "}
-                  Register with{" "}
-                  <span className="text-lg">
-                    <span className="text-blue-700">G</span>
-                    <span className="text-red-600">o</span>
-                    <span className="text-yellow-500">o</span>
-                    <span className="text-blue-700">g</span>
-                    <span className="text-green-600">l</span>
-                    <span className="text-red-600">e</span>
-                  </span>
-                </a>
-              </div>
-              <p>
-                Already have an account?{" "}
-                <Link to={"/auth/login"} className="text-primary">
-                  Login
-                </Link>
-              </p>
-            </form>
+                <p>
+                  Already have an account?{" "}
+                  <Link to={"/auth/login"} className="text-primary">
+                    Login
+                  </Link>
+                </p>
+              </form>
+            </div>
           </div>
         </div>
       </div>
