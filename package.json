@@ -26,6 +26,7 @@
     "react-leaflet": "^4.2.1",
     "react-rating-stars-component": "^2.2.0",
     "react-router-dom": "^7.1.0",
+    "react-simple-captcha": "^9.3.1",
     "react-simple-star-rating": "^5.1.7",
     "react-simple-typewriter": "^5.0.1",
     "react-toastify": "^11.0.2",

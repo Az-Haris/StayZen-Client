@@ -8,7 +8,7 @@ const HotelLocationMap = () => {
   return (
     <>
         <SectionTitle title={"Explore Our Hotel Location"} description={"Find our hotel and nearby attractions easily with our interactive map, making your travel planning seamless and stress-free."}/>
-      <div className="w-full h-56 md:h-96">
+      <div className="w-full h-56 md:h-screen">
         <MapContainer
           center={position}
           zoom={13}

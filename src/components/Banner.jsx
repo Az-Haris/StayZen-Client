@@ -26,7 +26,7 @@ const Banner = () => {
     >
       <SwiperSlide
         id="slider1"
-        className="py-20 flex-col items-center justify-center gap-5 text-center px-3"
+        className="min-h-[calc(100vh-64px)] flex-col items-center justify-center gap-5 text-center px-3"
       >
         <h3 className="text-sm md:text-2xl font-bold text-gray-200">
           Explore{" "}
@@ -52,7 +52,7 @@ const Banner = () => {
 
       <SwiperSlide
         id="slider2"
-        className="py-20 flex-col items-center justify-center gap-5 text-center px-3"
+        className="min-h-[calc(100vh-64px)] flex-col items-center justify-center gap-5 text-center px-3"
       >
         <h3 className="text-sm md:text-2xl font-bold text-gray-200">
           Discover{" "}
@@ -72,32 +72,7 @@ const Banner = () => {
         <Link to={"/rooms"} className="btn btn-accent text-white">Book Now !</Link>
       </SwiperSlide>
 
-      {/* Slide 3 */}
-
-      {/* <SwiperSlide id="slider3" className="py-20 flex-col items-center justify-center gap-5 text-center px-3">
-            <h3 className="text-2xl font-extrabold text-gray-200"><span className="text-accent underline underline-offset-8"> <Typewriter words={["Fast", "Reliable"]} loop={false} /></span> Processing</h3>
-            <h1 className="text-4xl font-bold font-poppins text-white">Get Your Visa in Record Time</h1>
-            <p className="max-w-[700px] text-gray-300">We ensure fast, accurate visa processing to keep your travel plans on schedule effortlessly.</p>
-            <button className="btn btn-accent text-white">Check Processing Time</button>
-        </SwiperSlide> */}
-
-      {/* Slide 4 */}
-
-      {/* <SwiperSlide id="slider4" className="py-20 flex-col items-center justify-center gap-5 text-center px-3">
-            <h3 className="text-2xl font-extrabold text-gray-200">Document Preparation <span className="text-accent underline underline-offset-8"> <Typewriter words={["Easy", "Quick"]} loop={false} /></span></h3>
-            <h1 className="text-4xl font-bold font-poppins text-white">Never Miss a Document Again</h1>
-            <p className="max-w-[700px] text-gray-300">Our platform guides you step by step through the required documents to ensure success.</p>
-            <button className="btn btn-accent text-white">Learn More</button>
-        </SwiperSlide> */}
-
-      {/* Slide 5 */}
-
-      {/* <SwiperSlide id="slider5" className="py-20 flex-col items-center justify-center gap-5 text-center px-3">
-            <h3 className="text-2xl font-extrabold text-gray-200">Dedicated <span className="text-accent underline underline-offset-8"> <Typewriter words={["Support"]} loop={false} /></span> Team</h3>
-            <h1 className="text-4xl font-bold font-poppins text-white">We’re Here for You</h1>
-            <p className="max-w-[700px] text-gray-300">Have questions? Our dedicated visa experts are available 24/7 to provide guidance and assistance anytime.</p>
-            <button className="btn btn-accent text-white">Contact Us Now</button>
-        </SwiperSlide> */}
+      
     </Swiper>
   );
 };

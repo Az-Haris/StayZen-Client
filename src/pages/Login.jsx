@@ -1,15 +1,24 @@
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import LoginImage from "../assets/login.json";
 import Lottie from "lottie-react";
 import { IoMdEyeOff } from "react-icons/io";
 import { IoMdEye } from "react-icons/io";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { AuthContext } from "../contexts/contexts";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
+import { AuthContext } from "../contexts/contexts";
+import {
+  loadCaptchaEnginge,
+  LoadCanvasTemplate,
+  validateCaptcha,
+} from "react-simple-captcha";
+import { MdEmail, MdVerified } from "react-icons/md";
+import { FaKey } from "react-icons/fa";
 
 const Login = () => {
+  const captchaRef = useRef(null);
   const [showPass, setShowPass] = useState(false);
-  const { loginUser, setUser, setLoading, loginWithGoogle, setEmail } =
+  const { loginUser, setUser, loading, setLoading, loginWithGoogle, setEmail } =
     useContext(AuthContext);
   const navigate = useNavigate();
   const emailRef = useRef();
@@ -21,98 +30,98 @@ const Login = () => {
     const email = form.get("email");
     const password = form.get("password");
 
-    // Login User
-    loginUser(email, password)
-      .then((result) => {
-        const user = result.user;
-        setUser(user);
-        setLoading(false);
-        Swal.fire("Success!", "Successfully Logged In!", "success");
-        navigate(location?.state ? location.state : "/");
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        Swal.fire("Error!", `${errorCode} ${errorMessage}`, "error");
-      });
+    // Captcha Verify
+    const captcha_value = captchaRef.current.value;
+    if (validateCaptcha(captcha_value) == true) {
+      // Login User
+      loginUser(email, password)
+        .then((result) => {
+          const user = result.user;
+          setUser(user);
+          setLoading(false);
+          Swal.fire("Success!", "Successfully Logged In!", "success");
+          navigate(location?.state ? location.state : "/");
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          Swal.fire("Error!", `${errorCode} ${errorMessage}`, "error");
+          setLoading(false);
+        });
+    } else {
+      Swal.fire("Captcha Error!", "Enter Valid Captcha", "error");
+      e.target.captcha.value = "";
+      setLoading(false);
+    }
   };
 
   const handleForgotPass = () => {
     setEmail(emailRef.current.value);
     navigate("/auth/forgot-password");
   };
+
+  useEffect(() => {
+    loadCaptchaEnginge(4);
+  }, []);
+
   return (
-    <div className="hero bg-base-200 py-0 lg:py-10">
-      <div className="flex flex-col lg:flex-row-reverse items-center gap-0 lg:gap-10">
-        <div className="text-center lg:text-left -mb-16 lg:mb-0">
-          <Lottie className="w-80 lg:w-[450px]" animationData={LoginImage} />
-        </div>
-        <div className="w-80 lg:w-96">
-          <div className="card bg-base-100 w-full shadow-2xl">
+    <>
+      <Helmet>
+        <title>Login to your account | StayZen</title>
+      </Helmet>
+      <div className="hero bg-base-200 py-10">
+        <div className="flex lg:flex-row-reverse justify-center items-center gap-10 container mx-auto">
+          <div className="hidden w-1/2 lg:flex text-center lg:text-left">
+            <Lottie animationData={LoginImage} />
+          </div>
+          <div className="lg:w-1/2 mx-3 w-full card bg-base-100 shadow-2xl">
             <form onSubmit={handleLogin} className="card-body">
               <h2 className="text-2xl font-bold text-primary text-center ">
                 Login Your Account
               </h2>
-              <div className="form-control">
+              <div className="form-control w-full">
                 <label className="label">
                   <span className="label-text">Email</span>
                 </label>
-                <label className="input input-bordered flex items-center gap-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 16 16"
-                    fill="currentColor"
-                    className="h-4 w-4 opacity-70"
-                  >
-                    <path d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z" />
-                    <path d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z" />
-                  </svg>
+                <label className="input input-bordered flex items-center gap-2 ">
+                  <MdEmail />
                   <input
+                    required
                     type="email"
                     name="email"
                     ref={emailRef}
                     autoComplete="email"
-                    className="grow"
+                    className="grow w-full"
                     placeholder="Email"
                   />
                 </label>
               </div>
-              <div className="form-control">
+              <div className="form-control w-full">
                 <label className="label">
                   <span className="label-text">Password</span>
                 </label>
-                <label className="input input-bordered flex items-center gap-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 16 16"
-                    fill="currentColor"
-                    className="h-4 w-4 opacity-70"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M14 6a4 4 0 0 1-4.899 3.899l-1.955 1.955a.5.5 0 0 1-.353.146H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2.293a.5.5 0 0 1 .146-.353l3.955-3.955A4 4 0 1 1 14 6Zm-4-2a.75.75 0 0 0 0 1.5.5.5 0 0 1 .5.5.75.75 0 0 0 1.5 0 2 2 0 0 0-2-2Z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
+                <label className="relative input input-bordered flex items-center gap-2">
+                  <FaKey />
                   <input
+                    required
                     type={showPass ? "text" : "password"}
                     name="password"
                     autoComplete="current-password"
-                    className="grow"
+                    className="grow w-full"
                     placeholder="Password"
                   />
                   <span
                     onClick={() => {
                       setShowPass(!showPass);
                     }}
-                    className="btn btn-sm text-xl bg-transparent border-none"
+                    className="absolute btn btn-sm text-xl bg-transparent border-none right-0"
                   >
                     {showPass ? <IoMdEyeOff /> : <IoMdEye />}
                   </span>
                 </label>
                 <label className="label">
                   <Link
-                  onClick={handleForgotPass}
+                    onClick={handleForgotPass}
                     to={"/auth/forgot-password"}
                     className="label-text-alt link link-hover hover:link-primary"
                   >
@@ -120,9 +129,32 @@ const Login = () => {
                   </Link>
                 </label>
               </div>
+
+              {/* Captcha Field */}
+              <div className="form-control w-full">
+                <label className="label">
+                  <span className="label-text">Captcha</span>
+                </label>
+                <LoadCanvasTemplate />
+                <label className="input input-bordered flex items-center gap-2">
+                  <MdVerified />
+                  <input
+                    type="text"
+                    name="captcha"
+                    ref={captchaRef}
+                    className="grow w-full"
+                    placeholder="Type the captcha"
+                  />
+                </label>
+              </div>
+
               <div className="form-control mt-6">
                 <button type="submit" className="btn btn-primary">
-                  Login
+                  {loading ? (
+                    <span className="loading loading-ring loading-md"></span>
+                  ) : (
+                    "Login"
+                  )}
                 </button>
                 <div className="divider">OR</div>
                 <a
@@ -133,7 +165,11 @@ const Login = () => {
                         const user = result.user;
                         setUser(user);
                         setLoading(false);
-                        Swal.fire("Success!", "Successfully Logged In!", "success");
+                        Swal.fire(
+                          "Success!",
+                          "Successfully Logged In!",
+                          "success",
+                        );
                         navigate(location?.state ? location.state : "/");
                       })
                       .catch((error) => {
@@ -142,7 +178,7 @@ const Login = () => {
                         Swal.fire(
                           "Error!",
                           `${errorCode} ${errorMessage}`,
-                          "error"
+                          "error",
                         );
                       });
                   }}
@@ -170,7 +206,7 @@ const Login = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

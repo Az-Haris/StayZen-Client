@@ -112,64 +112,68 @@ const Navbar = () => {
         </div>
         <div className="navbar-end gap-1 md:gap-3">
           <ThemeController></ThemeController>
-          {
-            loading? <span className="loading loading-ring loading-lg"></span> : (<>{user ? (
-              <div className="dropdown dropdown-end">
-                <div tabIndex={0} role="button">
-                  <div className=" flex justify-center items-center rounded-full">
-                    {isImageValid ? (
-                      <img
-                        className="w-full btn btn-ghost btn-circle avatar"
-                        alt={user?.displayName}
-                        src={user?.photoURL}
-                      />
-                    ) : (
-                      <FaRegUserCircle className="text-4xl text-accent" />
-                    )}
+          {loading ? (
+            <span className="loading loading-ring loading-lg"></span>
+          ) : (
+            <>
+              {user ? (
+                <div className="dropdown dropdown-end">
+                  <div tabIndex={0} role="button">
+                    <div className=" flex justify-center items-center rounded-full">
+                      {isImageValid ? (
+                        <img
+                          className="w-full btn btn-ghost btn-circle avatar"
+                          alt={user?.displayName}
+                          src={user?.photoURL}
+                        />
+                      ) : (
+                        <FaRegUserCircle className="text-4xl text-accent" />
+                      )}
+                    </div>
                   </div>
-                </div>
-                <ul
-                  tabIndex={0}
-                  className="menu menu-sm dropdown-content border border-base-300 bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
-                >
-                  <div className="text-lg">
-                    <p>Welcome,</p>
-                    <p className="font-semibold text-primary">
-                      {user?.displayName}
-                    </p>
-                  </div>
-                  <button
-                    onClick={() => {
-                      logOut()
-                        .then(() =>
-                          Swal.fire(
-                            "Success!",
-                            "You're Logged Out Successfully",
-                            "success"
-                          )
-                        )
-                        .catch((error) => {
-                          const errorCode = error.code;
-                          const errorMessage = error.message;
-                          Swal.fire(
-                            "Error!",
-                            `${errorCode} ${errorMessage}`,
-                            "error"
-                          );
-                        });
-                    }}
-                    className="btn btn-primary text-white btn-sm w-full mt-5"
+                  <ul
+                    tabIndex={0}
+                    className="menu menu-sm dropdown-content border border-base-300 bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
                   >
-                    Log Out
-                  </button>
-                </ul>
-              </div>
-            ) : (
-              <Link to={"/auth/login"}>
-                <FaRegUserCircle className="text-4xl" />
-              </Link>
-            )}</>)
-          }
+                    <div className="text-lg">
+                      <p>Welcome,</p>
+                      <p className="font-semibold text-primary">
+                        {user?.displayName}
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => {
+                        logOut()
+                          .then(() => {
+                            Swal.fire(
+                              "Success!",
+                              "You're Logged Out Successfully",
+                              "success"
+                            );
+                          })
+                          .catch((error) => {
+                            const errorCode = error.code;
+                            const errorMessage = error.message;
+                            Swal.fire(
+                              "Error!",
+                              `${errorCode} ${errorMessage}`,
+                              "error"
+                            );
+                          });
+                      }}
+                      className="btn btn-primary text-white btn-sm w-full mt-5"
+                    >
+                      Log Out
+                    </button>
+                  </ul>
+                </div>
+              ) : (
+                <Link to={"/auth/login"}>
+                  <FaRegUserCircle className="text-4xl" />
+                </Link>
+              )}
+            </>
+          )}
         </div>
       </div>
     </div>

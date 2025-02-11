@@ -3,10 +3,15 @@ import { IoArrowBackCircleSharp } from "react-icons/io5";
 import { MdHome } from "react-icons/md";
 import Lottie from "lottie-react";
 import animation404 from '../assets/404.json'
+import { Helmet } from "react-helmet-async";
 
 const ErrorPage = () => {
   const navigate = useNavigate();
   return (
+    <>
+    <Helmet>
+      <title>Error 404 Not Found | StayZen</title>
+    </Helmet>
     <div className="flex flex-col items-center min-h-screen justify-center">
       <Lottie className="w-52" animationData={animation404} />
 
@@ -31,6 +36,8 @@ const ErrorPage = () => {
         </Link>
       </div>
     </div>
+    </>
+    
   );
 };
 

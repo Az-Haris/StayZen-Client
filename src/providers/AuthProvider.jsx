@@ -1,4 +1,4 @@
-import { AuthContext } from "../contexts/contexts";
+
 import PropTypes from "prop-types";
 import {
   createUserWithEmailAndPassword,
@@ -13,6 +13,7 @@ import {
 } from "firebase/auth";
 import app from "../firebase/firebase.init";
 import { useEffect, useState } from "react";
+import { AuthContext } from "../contexts/contexts";
 
 const auth = getAuth(app);
 

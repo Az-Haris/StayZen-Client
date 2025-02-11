@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import { useContext, useState } from "react";
 import { AuthContext } from "../contexts/contexts";
 import ReactStars from "react-rating-stars-component";
+import { Helmet } from "react-helmet-async";
 
 const RoomDetails = () => {
   const navigate = useNavigate();
@@ -169,6 +170,10 @@ const RoomDetails = () => {
 
 
   return (
+    <>
+    <Helmet>
+      <title>Room Details | StayZen</title>
+    </Helmet>
     <div className="container mx-auto px-3 mt-5 mb-20">
       <div className="card card-compact bg-base-100 shadow-xl">
         <div className="card-body">
@@ -411,6 +416,7 @@ const RoomDetails = () => {
 
       {/* Apply form end */}
     </div>
+    </>
   );
 };
 
