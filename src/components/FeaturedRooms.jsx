@@ -70,7 +70,7 @@ const FeaturedRooms = () => {
             </figure>
             <div className="card-body">
               <div className="flex items-center justify-between">
-                <h2 className="card-title text-primary font-bold text-2xl">
+                <h2 className="text-primary font-bold text-2xl">
                   {topRoom.name}
                 </h2>
                 <span>

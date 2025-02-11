@@ -90,49 +90,56 @@ const Rooms = () => {
                 key={room._id}
                 className="card card-compact bg-base-100 shadow-xl transform hover:-translate-y-2 transition duration-500 border border-base-300"
               >
-                <figure className="h-52">
+                <figure className="h-56">
                   <img
                     className="object-cover h-full w-full transform hover:scale-105 transition duration-500"
                     src={room.image}
-                    alt="{countryName}"
+                    alt={room.name}
                   />
                 </figure>
                 <div className="card-body">
-                  <h2 className="card-title text-primary font-bold text-2xl">
-                    {room.name}
-                  </h2>
-                  <div className="space-y-2 text-lg">
-                    <p>
-                      <span className="font-bold">Capacity : </span>
-                      {room.capacity}
-                    </p>
-                    <p>
-                      <span className="font-bold">Size : </span>
-                      {room.size}
-                    </p>
-                    <p>
-                      <span className="font-bold">Bed Type : </span>
-                      {room.bedType}
-                    </p>
-                    <div className="flex items-center gap-1">
-                      <span className="font-bold">Rating : </span>
-                      <span className="flex items-center gap-5">
-                        {`${room.rating}/${room.ratingCount}`}
-                        <ReactStars
-                          count={5}
-                          key={room.rating}
-                          value={room.rating}
-                          size={30}
-                          activeColor="#ffd700"
-                          edit={false}
-                          isHalf={true}
-                        />
+                  <div className="flex items-center justify-between">
+                    <h2 className="text-primary font-bold text-2xl">
+                      {room.name}
+                    </h2>
+                    <span>
+                      <span className="font-bold text-xl">
+                        {room.size.split(" ")[0]}
+                      </span>{" "}
+                      {room.size.split(" ")[1]}
+                    </span>
+                  </div>
+                  <div className="space-y-3 text-lg">
+                    <div className="flex items-center justify-between">
+                      <p>{room.bedType}</p>
+                      <span>
+                        <span className="font-bold text-xl">
+                          {room.capacity}
+                        </span>{" "}
+                        person
                       </span>
                     </div>
-                    <p>
-                      <span className="font-bold">Price : </span>$
-                      {room.pricePerNight} /night
-                    </p>
+                  </div>
+
+                  <div className="flex justify-between items-center mt-3">
+                    <span className="flex items-center gap-2 text-lg">
+                      {`${room.rating}/${room.ratingCount}`}
+                      <ReactStars
+                        count={5}
+                        key={room.rating}
+                        value={room.rating}
+                        size={30}
+                        activeColor="#ffd700"
+                        edit={false}
+                        isHalf={true}
+                      />
+                    </span>
+                    <span>
+                      <span className="text-3xl font-bold text-primary">
+                        $ {room.pricePerNight}
+                      </span>{" "}
+                      /Night
+                    </span>
                   </div>
                 </div>
               </Link>
