@@ -108,7 +108,7 @@ const Login = () => {
                     type={showPass ? "text" : "password"}
                     name="password"
                     autoComplete="current-password"
-                    defaultValue="DummyPass123"
+                    defaultValue="ExamplePass123"
                     className="grow w-full"
                     placeholder="Password"
                   />

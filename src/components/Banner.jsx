@@ -14,7 +14,7 @@ const Banner = () => {
       spaceBetween={30}
       centeredSlides={true}
       autoplay={{
-        delay: 10000,
+        delay: 5000,
         disableOnInteraction: false,
       }}
       pagination={{
@@ -22,7 +22,7 @@ const Banner = () => {
       }}
       navigation={true}
       modules={[Autoplay, Pagination, Navigation]}
-      className="mySwiper  z-10"
+      className="mySwiper"
     >
       <SwiperSlide
         id="slider1"

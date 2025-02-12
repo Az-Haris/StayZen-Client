@@ -42,7 +42,7 @@ const MyBookings = () => {
     },
   });
 
-  console.log(bookedDates)
+
 
   const isDateBooked = (date) => {
     return bookedDates.includes(moment(date).format("YYYY-MM-DD"));

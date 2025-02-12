@@ -1,9 +1,11 @@
-import { Link } from "react-router-dom";
 import SectionTitle from "../utilities/SectionTitle";
-import Marquee from "react-fast-marquee";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import ReactStars from "react-rating-stars-component";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
 
 const GuestReviews = () => {
   // Load booking data
@@ -19,6 +21,8 @@ const GuestReviews = () => {
       return res.data;
     },
   });
+
+  console.log(reviews)
 
   if (isLoading) {
     return (
@@ -57,44 +61,49 @@ const GuestReviews = () => {
           "Explore heartfelt reviews from our guests, sharing their memorable stays and highlighting the comfort, luxury, and exceptional service we offer."
         }
       ></SectionTitle>
-      <Marquee pauseOnHover={true} speed={50}>
+
+      <Swiper
+        modules={[Navigation]} // Use modules array to include Navigation
+        slidesPerView={3}
+        spaceBetween={40}
+        navigation
+        loop={true}
+        breakpoints={{
+          0: { slidesPerView: 1 },
+          768: { slidesPerView: 2 },
+          1024: { slidesPerView: 3 },
+        }}
+      >
         {reviews.map((review) => (
-          <Link
-            key={review._id}
-            to={`/rooms/${review.roomId}`}
-            className="mr-10 flex min-h-56 max-h-56 overflow-y-hidden"
-          >
-            <div className="rounded-xl shadow-xl border border-base-300 p-5">
-              <div className="flex items-center gap-3">
-                <img
-                  src={review.photoURL}
-                  className="w-12 h-12 rounded-full border border-base-300"
-                  alt="Avatar"
-                />
-                <div>
-                  <h2 className="font-bold text-xl">{review.userName}</h2>
-                  <p>{review.reviewDate}</p>
-                </div>
-              </div>
-              <div>
-                <div className="flex items-center justify-between mt-5 gap-5">
-                  <h3 className="font-semibold text-md">Review :</h3>
-                  <ReactStars
-                    count={5}
-                    size={30}
-                    value={review.rating}
-                    activeColor="#ffd700"
-                    edit={false}
+          <SwiperSlide key={review._id}>
+            <div className="review-card p-6 rounded-lg shadow-lg text-center border hover:shadow-2xl">
+              <figure className="w-32 h-32 mx-auto mb-4">
+                {review.photoURL && (
+                  <img
+                    src={review.photoURL}
+                    alt={review.userName}
+                    className="rounded-full border"
                   />
-                </div>
-              </div>
-              <div>
-                <p className="max-w-72">{review.review}</p>
+                )}
+              </figure>
+              <h3 className="text-xl font-semibold mb-2">{review.userName}</h3>
+              <p className="text-gray-500 mb-3">{review.reviewDate}</p>
+              <p className="text-gray-700 mb-4 italic">
+                &quot;{review.review.slice(0, 70)}...&quot;
+              </p>
+              <div className="flex justify-center">
+                <ReactStars
+                  count={5}
+                  size={30}
+                  value={review.rating}
+                  activeColor="#ffd700"
+                  edit={false}
+                />
               </div>
             </div>
-          </Link>
+          </SwiperSlide>
         ))}
-      </Marquee>
+      </Swiper>
     </div>
   );
 };

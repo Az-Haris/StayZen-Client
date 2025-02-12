@@ -15,7 +15,7 @@ import { imageUpload } from "../utilities/imageUpload";
 
 const Register = () => {
   const [showPass, setShowPass] = useState(false);
-  const { registerNewUser, setLoading, updateUser, setUser, loginWithGoogle } =
+  const { registerNewUser, setLoading, updateUser, loading, setUser, loginWithGoogle } =
     useContext(AuthContext);
   const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{6,}$/;
   const [error, setError] = useState({});
@@ -72,7 +72,7 @@ const Register = () => {
             .post("https://stay-zen.vercel.app/users", {
               email,
               displayName: name,
-              photoURL: photo,
+              photoURL,
               authMethod: "email-password",
             })
             .catch(function (error) {
@@ -144,13 +144,6 @@ const Register = () => {
                       <span className="label-text">Photo</span>
                     </label>
 
-                    {/* <FaLink className="text-gray-500" /> */}
-                    {/* <input
-                      type="text"
-                      name="photo"
-                      className="grow"
-                      placeholder="Photo URL"
-                    /> */}
                     <input
                       required
                       name="photo"
@@ -203,9 +196,13 @@ const Register = () => {
                 </div>
 
                 <div className="form-control mt-6">
-                  <button type="submit" className="btn btn-primary">
-                    Register
-                  </button>
+                <button type="submit" className="btn btn-primary">
+                  {loading ? (
+                    <span className="loading loading-ring loading-md"></span>
+                  ) : (
+                    "Register"
+                  )}
+                </button>
                   <div className="divider">OR</div>
                   <a
                     onClick={() => {
