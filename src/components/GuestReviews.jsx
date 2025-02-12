@@ -88,7 +88,7 @@ const GuestReviews = () => {
               </figure>
               <h3 className="text-xl font-semibold mb-2">{review.userName}</h3>
               <p className="text-gray-500 mb-3">{review.reviewDate}</p>
-              <p className="text-gray-700 mb-4 italic">
+              <p className=" mb-4 italic">
                 &quot;{review.review.slice(0, 70)}...&quot;
               </p>
               <div className="flex justify-center">

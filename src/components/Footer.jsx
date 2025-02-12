@@ -8,8 +8,15 @@ import { MdHome } from "react-icons/md";
 import { BsInfoCircleFill } from "react-icons/bs";
 import { BiSupport } from "react-icons/bi";
 import { BiSolidBuildingHouse } from "react-icons/bi";
+import Swal from "sweetalert2";
 
 const Footer = () => {
+  const handleSubscribe = e =>{
+    e.preventDefault();
+    const form = e.target;
+    Swal.fire("Success!", "Successfully Subscribed!", "success");
+    form.reset()
+  }
   return (
     <footer className="bg-base-200 text-base-content">
       <div className="divider pt-10 my-0">Reach Out</div>
@@ -107,7 +114,7 @@ const Footer = () => {
           </Link>
           
         </nav>
-        <form className="w-full">
+        <form onSubmit={handleSubscribe} className="w-full">
           <h6 className="footer-title">Newsletter</h6>
           <fieldset className="form-control ">
             <label className="label">

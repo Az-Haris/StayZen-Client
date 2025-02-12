@@ -78,7 +78,7 @@ const Navbar = () => {
   }, [user?.photoURL]);
 
   return (
-    <div className="fixed top-0 backdrop-blur-2xl shadow-lg w-full z-10 bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400">
+    <div className="fixed top-0 shadow-lg w-full bg-base-100 z-10 ">
       <div className="navbar px-3 container mx-auto inset-x-0">
         <div className="navbar-start">
           <div className="dropdown">
